@@ -1,0 +1,38 @@
+# ─── Normalización de line endings ──────────────
+# Todo el texto se normaliza a LF, sin importar el SO del contribuidor
+* text=auto eol=lf
+
+# Scripts de Windows sí deben mantener CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# ─── Código fuente ───────────────────────────────
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# ─── Assets binarios: nunca tocar, ni normalizar ni diff ───
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# ─── Archivos generados: no mostrar en diffs de PR ─
+dist/** linguist-generated=true -diff
+Dist/** linguist-generated=true -diff
+
+# ─── Marca correctamente el lenguaje principal en GitHub ───
+*.ts linguist-language=TypeScript

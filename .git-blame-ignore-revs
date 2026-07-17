@@ -1,0 +1,17 @@
+# Este archivo lista commits que `git blame` debe ignorar al mostrar autoría,
+# usado típicamente para commits masivos de reformateo (ej. primera pasada de
+# Prettier/ESLint sobre todo el código) que de otro modo "ensucian" el blame
+# real de cada línea.
+#
+# Activar en local:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# GitHub lo detecta automáticamente al mostrar blame en la web, sin config extra.
+#
+# Cómo agregar un commit aquí:
+#   1. Haz el commit de reformateo masivo normalmente (ej. "chore: apply prettier formatting")
+#   2. Copia su hash completo: git rev-parse HEAD
+#   3. Agrega una línea abajo con el hash + un comentario explicando qué fue
+
+# chore: apply prettier formatting to entire codebase
+# <pega aquí el hash completo del commit cuando exista>
