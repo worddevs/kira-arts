@@ -39,7 +39,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "tsup && copyfiles -u 1 \"Src/Public/**/*\" dist",
+    "build": "tsup && copyfiles \"Public/**/*\" dist",
     "lint": "eslint Src --ext .ts",
     "format": "prettier --write \"Src/**/*.ts\"",
     "test": "vitest run",

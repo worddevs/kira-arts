@@ -7,7 +7,7 @@ export function ensureFontsRegistered(): void {
   if (initialized) return;
   initialized = true;
 
-  const fontsDir = path.join(__dirname, "..", "..", "Public", "fonts");
+  const fontsDir = path.join(__dirname, "Public", "Fonts");
 
   GlobalFonts.registerFromPath(`${fontsDir}/HelveticaBold.ttf`, "Helvetica Bold");
   GlobalFonts.registerFromPath(`${fontsDir}/Helvetica.ttf`, "Helvetica");
