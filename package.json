@@ -1,0 +1,71 @@
+{
+  "name": "kira-arts",
+  "version": "1.0.0",
+  "description": "TypeScript library to generate Discord-style profile, welcome and achievement cards",
+  "keywords": [
+    "discord",
+    "discordjs",
+    "canvas",
+    "card",
+    "profile-card",
+    "image-generation",
+    "typescript"
+  ],
+  "homepage": "https://github.com/worddevs/kira-arts#readme",
+  "bugs": {
+    "url": "https://github.com/worddevs/kira-arts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worddevs/kira-arts.git"
+  },
+  "license": "Apache-2.0",
+  "author": "worddevs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "Src/Public"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup && copyfiles -u 1 \"Src/Public/**/*\" dist",
+    "lint": "eslint Src --ext .ts",
+    "format": "prettier --write \"Src/**/*.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "discord.js": "^14.27.0"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "copyfiles": "^2.4.1",
+    "discord.js": "^14.27.0",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.5",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^4.1.10"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-win32-x64-msvc": "^1.2.0"
+  }
+}

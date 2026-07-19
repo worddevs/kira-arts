@@ -2,6 +2,7 @@
 node_modules/
 .pnp
 .pnp.js
+package-lock.json
 
 # ─── Build output ───────────────────────────────
 dist/
@@ -49,3 +50,8 @@ Desktop.ini
 *.tmp
 *.temp
 .cache/
+
+# ─── Otros ─────────────────────────────────────────
+*.zip
+smoke-test.mjs
+smoke-*.png

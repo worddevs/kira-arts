@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/worddevs/kira-arts/discussions
+    about: General questions and usage help should go here, not in the issue tracker.
