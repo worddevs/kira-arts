@@ -23,6 +23,18 @@ A TypeScript library for generating Discord-style visual cards: profiles, welcom
 npm install kira-arts
 ```
 
+```bash
+pnpm add kira-arts
+```
+
+```bash
+yarn add kira-arts
+```
+
+```bash
+bun add kira-arts
+```
+
 > Requires Node.js >= 20 and a project with `discord.js` ^14.27.0 already installed (peer dependency).
 
 ## 🚀 Quick usage
