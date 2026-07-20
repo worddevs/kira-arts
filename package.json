@@ -32,8 +32,7 @@
     }
   },
   "files": [
-    "dist",
-    "Src/Public"
+    "dist"
   ],
   "engines": {
     "node": ">=20"
@@ -55,6 +54,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@rolldown/binding-win32-x64-msvc": "^1.2.0",
     "copyfiles": "^2.4.1",
     "discord.js": "^14.27.0",
     "eslint": "^10.7.0",
@@ -64,8 +64,5 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.64.0",
     "vitest": "^4.1.10"
-  },
-  "optionalDependencies": {
-    "@rolldown/binding-win32-x64-msvc": "^1.2.0"
   }
 }
