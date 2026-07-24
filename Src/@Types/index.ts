@@ -6,8 +6,15 @@ export {
   KiraErrorCode,
   ColorValue,
   ColorInput,
+  KiraCacheOptions,
 } from "./common";
-export { KiraThemeName, KiraThemePalette, KiraNameplatePalette } from "./theme";
+export {
+  KiraThemeName,
+  KiraThemePalette,
+  KiraNameplatePalette,
+  ColorResolutionSources,
+  CanvasBadge,
+} from "./theme";
 export {
   KiraBadge,
   KiraNameplate,
@@ -17,6 +24,10 @@ export {
   KiraUserDecoration,
   KiraUserData,
   RawUserProfileResponse,
+  ParsedUsername,
+  CacheEntry,
+  KiraMemberInfo,
+  ShipLayout,
 } from "./user";
 export {
   RankOptions,
@@ -24,8 +35,20 @@ export {
   LevelUpOptions,
   AchievementRarity,
   AchievementOptions,
+  AchievementLayout,
   ShipOptions,
   LeaderboardEntry,
   LeaderboardOptions,
   ProfileOptions,
+  NowPlayingTrack,
+  NowPlayingOptions,
+  SourceIconKind,
+  SourceMeta,
+  NowPlayingLayout,
 } from "./options";
+export {
+  MoonlinkTrackLike,
+  LavalinkTrackLike,
+  DiscordPlayerTrackLike,
+  DistubeSongLike,
+} from "./adapters";

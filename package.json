@@ -1,6 +1,6 @@
 {
   "name": "kira-arts",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "TypeScript library to generate Discord-style profile, welcome and achievement cards",
   "keywords": [
     "discord",

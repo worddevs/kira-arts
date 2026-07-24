@@ -5,7 +5,7 @@ import { drawCoverImage, drawGradientBorder, hexToRgba } from "./canvasShared.ut
 import { parseHex } from "./validations.utils";
 import { truncateText } from "./strings.utils";
 import { withFallback } from "./fonts.utils";
-import type { AchievementRarity } from "../@Types/index";
+import type { AchievementRarity, AchievementLayout } from "../@Types/index";
 
 export const CARD_WIDTH = 700;
 export const CARD_HEIGHT = 220;
@@ -26,19 +26,6 @@ const RARITY_LABELS: Record<AchievementRarity, string> = {
   epic: "Epic",
   legendary: "Legendary",
 };
-
-export interface AchievementLayout {
-  title: string;
-  description?: string;
-  iconUrl?: string;
-  rarity?: AchievementRarity;
-  accentColor?: string;
-  borderColors?: string[];
-  noBorder?: boolean;
-  customBackground?: string;
-  usernameLine?: string;
-  progressText?: string;
-}
 
 function resolveAccentColor(layout: AchievementLayout): string {
   if (layout.accentColor) return parseHex(layout.accentColor);

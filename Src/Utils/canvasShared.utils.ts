@@ -1,19 +1,7 @@
 import type { Image, SKRSContext2D } from "@napi-rs/canvas";
 import { loadImage } from "@napi-rs/canvas";
-
-import type { ColorValue } from "./validations.utils";
+import type { ColorResolutionSources } from "../@Types/index";
 import { parseHex } from "./validations.utils";
-import type { ColorInput } from "../@Types/common";
-
-export interface ColorResolutionSources {
-  custom?: ColorInput;
-  removeBorder?: boolean;
-  useNitroTheme?: boolean;
-  nitroColors?: string[] | null;
-  useRoleColor?: boolean;
-  roleColor?: string | null;
-  fallback?: ColorValue[];
-}
 
 export function resolveCardColors(sources: ColorResolutionSources): string[] {
   if (sources.removeBorder) return [];

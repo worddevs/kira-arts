@@ -1,6 +1,6 @@
 import "./profileImage.output.utils";
 
-import type { ShipLayout} from "./ShipCard/index";
+import type { ShipLayout } from "./ShipCard/index";
 import { createShipCanvas, drawShipCard, getCardDimensions } from "./ShipCard/index";
 import { encodeCanvas } from "./output.utils";
 import type { OutputOptions } from "../@Types/index";

@@ -1,11 +1,6 @@
 import type { SKRSContext2D } from "@napi-rs/canvas";
+import type { ParsedUsername } from "../@Types/user";
 import { withFallback } from "./fonts.utils";
-
-export interface ParsedUsername {
-  username: string;
-  newSize: number;
-  textLength: number;
-}
 
 export function parseUsername(
   username: string,
@@ -112,4 +107,53 @@ export function truncateText(text: string, limit: number = 25, fromEnd: boolean 
   } else {
     return text;
   }
+}
+
+export function parseDurationString(duration: string | undefined | null): number | undefined {
+  if (!duration || typeof duration !== "string") return undefined;
+
+  const parts = duration.trim().split(":");
+  if (
+    parts.length < 2 ||
+    parts.length > 3 ||
+    parts.some((p) => p === "" || Number.isNaN(Number(p)))
+  ) {
+    return undefined;
+  }
+
+  const numbers = parts.map(Number);
+  const [h, m, s] = numbers.length === 3 ? numbers : [0, numbers[0], numbers[1]];
+
+  return (h * 3600 + m * 60 + s) * 1000;
+}
+
+export function truncateTextToWidth(
+  ctx: SKRSContext2D,
+  text: string,
+  maxWidth: number,
+  ellipsis: string = "…",
+): string {
+  if (ctx.measureText(text).width <= maxWidth) return text;
+
+  let truncated = text;
+  while (truncated.length > 0 && ctx.measureText(truncated + ellipsis).width > maxWidth) {
+    truncated = truncated.slice(0, -1);
+  }
+
+  return truncated.length > 0 ? truncated + ellipsis : ellipsis;
+}
+
+export function formatDuration(ms: number | undefined | null): string {
+  if (ms === null || ms === undefined || !Number.isFinite(ms) || ms < 0) return "0:00";
+
+  const totalSeconds = Math.floor(ms / 1000);
+  const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+  const minutes = Math.floor(totalSeconds / 60) % 60;
+  const hours = Math.floor(totalSeconds / 3600);
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
 }

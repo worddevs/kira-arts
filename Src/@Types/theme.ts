@@ -1,3 +1,7 @@
+import type { ColorValue } from "../Utils/validations.utils";
+import type { ColorInput } from "./common";
+import type { Image } from "@napi-rs/canvas";
+
 export type KiraThemeName =
   "discord" | "midnight" | "sunset" | "neon" | "forest" | "sakura" | "monochrome" | "gold";
 
@@ -25,3 +29,20 @@ export type KiraNameplatePalette =
   | "teal"
   | "violet"
   | "white";
+
+export interface ColorResolutionSources {
+  custom?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  nitroColors?: string[] | null;
+  useRoleColor?: boolean;
+  roleColor?: string | null;
+  fallback?: ColorValue[];
+}
+
+export interface CanvasBadge {
+  canvas: Image;
+  x: number;
+  y: number;
+  w: number;
+}

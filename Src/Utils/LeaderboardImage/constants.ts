@@ -1,5 +1,3 @@
-import type { LeaderboardEntry, KiraUserData } from "../../@Types/index";
-
 export const CARD_WIDTH = 720;
 export const ROW_HEIGHT = 100;
 export const ROW_GAP = 14;
@@ -14,8 +12,3 @@ export const RANK_COLORS: Record<number, string> = {
 
 export const DEFAULT_ACCENT = "#2DD4BF";
 export const DEFAULT_ROW_BASE = "#1c2128";
-
-export interface ResolvedLeaderboardEntry {
-  entry: LeaderboardEntry & { rank: number };
-  data: KiraUserData;
-}

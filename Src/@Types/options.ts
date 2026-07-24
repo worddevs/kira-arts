@@ -135,6 +135,19 @@ export interface LeaderboardOptions {
   output?: OutputOptions;
 }
 
+export interface AchievementLayout {
+  title: string;
+  description?: string;
+  iconUrl?: string;
+  rarity?: AchievementRarity;
+  accentColor?: string;
+  borderColors?: string[];
+  noBorder?: boolean;
+  customBackground?: string;
+  usernameLine?: string;
+  progressText?: string;
+}
+
 export interface ProfileOptions {
   customUsername?: string;
   customTag?: string;
@@ -168,4 +181,67 @@ export interface ProfileOptions {
   rankData?: RankOptions;
   theme?: KiraThemeName;
   output?: OutputOptions;
+}
+
+export interface NowPlayingLayout {
+  title: string;
+  author?: string;
+  artworkUrl?: string;
+  duration?: number;
+  position: number;
+  isLive: boolean;
+  paused: boolean;
+  sourceLabel?: string;
+  sourceIcon?: SourceIconKind;
+  accentColor: string;
+  borderColors: string[];
+  barColors: string[];
+  titleColor?: string;
+  authorColor?: string;
+  customBackground?: string;
+  showSourceBadge: boolean;
+  requester?: {
+    username: string;
+    avatarUrl: string;
+  } | null;
+}
+
+export interface NowPlayingTrack {
+  title: string;
+  author?: string;
+  artworkUrl?: string;
+  duration?: number;
+  isStream?: boolean;
+  sourceName?: string;
+}
+
+export interface NowPlayingOptions {
+  position?: number;
+  paused?: boolean;
+  requesterId?: string;
+  guildId?: string;
+  bypassCache?: boolean;
+  accentColor?: string;
+  borderColor?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  useRoleColor?: boolean;
+  progressBarColor?: ColorInput;
+  titleColor?: string;
+  authorColor?: string;
+  showSourceBadge?: boolean;
+  showRequestedBy?: boolean;
+  customBackground?: string;
+  customWidth?: number;
+  customHeight?: number;
+  theme?: KiraThemeName;
+  output?: OutputOptions;
+}
+
+export type SourceIconKind = "play" | "waves" | "cloud" | "bolt" | "note";
+
+export interface SourceMeta {
+  label: string;
+  color: string;
+  icon: SourceIconKind;
 }

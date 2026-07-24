@@ -1,5 +1,5 @@
 import type { Client, UserFlagsBitField, UserFlagsString } from "discord.js";
-import type { KiraBadge } from "../@Types/index";
+import type { KiraBadge, KiraMemberInfo } from "../@Types/index";
 
 const ICON_BASE = "https://raw.githubusercontent.com/kenndeclouv/badges-discord/main/assets";
 
@@ -7,11 +7,6 @@ const BOOST_BADGE: KiraBadge = {
   name: "Server Booster",
   icon: `${ICON_BASE}/boosts/discordboost1.svg`,
 };
-
-export interface KiraMemberInfo {
-  boostBadge: KiraBadge | null;
-  roleColor: string | null;
-}
 
 export async function getGuildMemberInfo(
   client: Client,

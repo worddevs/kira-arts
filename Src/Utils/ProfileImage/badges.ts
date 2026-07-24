@@ -1,19 +1,12 @@
-import type { Canvas, Image } from "@napi-rs/canvas";
+import type { Canvas } from "@napi-rs/canvas";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { truncateText } from "../strings.utils";
 import { parsePng } from "../validations.utils";
 import { KiraError } from "../error.utils";
-import type { ProfileOptions, KiraUserData} from "../../@Types/index";
+import type { ProfileOptions, KiraUserData, CanvasBadge } from "../../@Types/index";
 import { KiraErrorCode } from "../../@Types/index";
 import { otherImgs, clydeID } from "./constants";
-
-export interface CanvasBadge {
-  canvas: Image;
-  x: number;
-  y: number;
-  w: number;
-}
 
 export async function getBadges(
   data: KiraUserData,

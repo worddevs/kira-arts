@@ -1,4 +1,5 @@
 import type { KiraNameplatePalette } from "./theme";
+import type { LeaderboardEntry } from "./options";
 
 export interface KiraBadge {
   name: string;
@@ -51,4 +52,61 @@ export interface RawUserProfileResponse {
   user_profile_customization?: {
     theme_colors?: number[];
   };
+}
+
+export interface ParsedUsername {
+  username: string;
+  newSize: number;
+  textLength: number;
+}
+
+export interface CacheEntry {
+  data: KiraUserData;
+  expiresAt: number;
+}
+
+export interface KiraMemberInfo {
+  boostBadge: KiraBadge | null;
+  roleColor: string | null;
+}
+
+export interface ShipLayout {
+  leftAvatarUrl: string;
+  rightAvatarUrl: string;
+  percentage: number;
+  message: string;
+  accentColor?: string;
+  borderColors?: string[];
+  noBorder?: boolean;
+  customBackground?: string;
+  heartColor?: string;
+  shipName?: string;
+  showText?: boolean;
+}
+
+export type TextEffect = "none" | "shadow" | "glow";
+
+export interface MemberEventLayout {
+  message?: string;
+  memberCount?: number;
+  dateText?: string;
+  accentColor: string;
+  borderColors: string[];
+  usernameColor?: string;
+  messageColor?: string;
+  customBackground?: string;
+  fontScale?: number;
+  avatarFrameUrl?: string | null;
+  avatarBorderColor?: string;
+  serverTag?: KiraServerTag | null;
+  badges?: KiraBadge[];
+  maxBadges?: number;
+  usernameEffect?: TextEffect;
+  messageEffect?: TextEffect;
+  glowColor?: string;
+}
+
+export interface ResolvedLeaderboardEntry {
+  entry: LeaderboardEntry & { rank: number };
+  data: KiraUserData;
 }

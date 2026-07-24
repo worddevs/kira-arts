@@ -20,3 +20,8 @@ export enum KiraErrorCode {
   Render = "RENDER",
   Config = "CONFIG",
 }
+
+export interface KiraCacheOptions {
+  enabled?: boolean;
+  ttl?: number;
+}

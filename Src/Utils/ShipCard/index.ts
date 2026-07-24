@@ -1,3 +1,4 @@
+export { ShipLayout } from "../../@Types/index";
 export { computeCompatibility, pickShipMessage } from "./compatibility";
-export { ShipLayout, getCardDimensions, createShipCanvas } from "./canvasSetup";
+export { getCardDimensions, createShipCanvas } from "./canvasSetup";
 export { drawShipCard } from "./render";

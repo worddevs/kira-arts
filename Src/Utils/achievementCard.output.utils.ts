@@ -1,14 +1,12 @@
 import "./profileImage.output.utils";
 
-import type {
-  AchievementLayout} from "./achievementCard.utils";
 import {
   createAchievementCanvas,
   drawAchievementCard,
   getCardDimensions,
 } from "./achievementCard.utils";
 import { encodeCanvas } from "./output.utils";
-import type { OutputOptions } from "../@Types/index";
+import type { OutputOptions, AchievementLayout } from "../@Types/index";
 
 export async function genAchievementPng(
   layout: AchievementLayout,

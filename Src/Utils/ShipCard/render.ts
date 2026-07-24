@@ -10,7 +10,7 @@ import { parseHex } from "../validations.utils";
 import { truncateText } from "../strings.utils";
 import { withFallback } from "../fonts.utils";
 import { CORNER_RADIUS, AVATAR_SIZE, HEART_WIDTH, HEART_HEIGHT, DEFAULT_ACCENT } from "./constants";
-import type { ShipLayout } from "./canvasSetup";
+import type { ShipLayout } from "./index";
 import { drawHeartIcon, drawHeartMeter } from "./heartMeter";
 import { drawAvatarCircle } from "./avatar";
 import { drawSparkles, drawConnector, drawShipNamePill, drawVignette } from "./decorations";

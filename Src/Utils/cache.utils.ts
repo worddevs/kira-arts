@@ -1,14 +1,4 @@
-import type { KiraUserData } from "../@Types/index";
-
-export interface KiraCacheOptions {
-  enabled?: boolean;
-  ttl?: number;
-}
-
-interface CacheEntry {
-  data: KiraUserData;
-  expiresAt: number;
-}
+import type { CacheEntry, KiraCacheOptions, KiraUserData } from "../@Types/index";
 
 const DEFAULT_TTL = 12 * 60 * 60 * 1000;
 

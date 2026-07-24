@@ -3,8 +3,7 @@ import { fetchUserData } from "../Utils/fetch.utils";
 import { genAchievementPng } from "../Utils/achievementCard.output.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import type { AchievementLayout } from "../Utils/achievementCard.utils";
-import type { AchievementOptions} from "../@Types/index";
+import type { AchievementOptions, AchievementLayout } from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
 export type { AchievementOptions } from "../@Types/index";

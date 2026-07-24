@@ -5,7 +5,15 @@ export { leaveImage } from "./Cards/leaveImage";
 export { levelUpImage } from "./Cards/levelUpImage";
 export { achievementImage } from "./Cards/achievementImage";
 export { shipImage } from "./Cards/shipImage";
+export { nowPlayingImage } from "./Cards/nowPlayingImage";
 export { computeCompatibility, pickShipMessage } from "./Utils/ShipCard/index";
+export {
+  fromMoonlinkTrack,
+  fromLavalinkTrack,
+  fromDiscordPlayerTrack,
+  fromDistubeTrack,
+  extractRequesterId,
+} from "./Adapters/index";
 export { setClient } from "./client";
 export { setCacheOptions, clearCache, getCacheSize } from "./Utils/cache.utils";
 export { KiraError } from "./Utils/error.utils";
@@ -28,7 +36,6 @@ export {
   isString,
   isNumber,
 } from "./Utils/validations.utils";
-export type { KiraCacheOptions } from "./Utils/cache.utils";
 export type {
   ProfileOptions,
   RankOptions,
@@ -52,4 +59,12 @@ export type {
   OutputOptions,
   KiraThemeName,
   KiraThemePalette,
+  NowPlayingTrack,
+  NowPlayingOptions,
+  SourceMeta,
+  SourceIconKind,
+  MoonlinkTrackLike,
+  LavalinkTrackLike,
+  DiscordPlayerTrackLike,
+  DistubeSongLike,
 } from "./@Types/index";
