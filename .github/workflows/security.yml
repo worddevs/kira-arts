@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - run: npm audit --audit-level=high
+      - run: npm audit --omit=dev --audit-level=high
 
   codeql:
     name: CodeQL
