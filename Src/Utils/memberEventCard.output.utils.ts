@@ -1,14 +1,12 @@
 import "./profileImage.output.utils";
 
-import type {
-  MemberEventLayout} from "./MemberEeventCard/index";
 import {
   createMemberEventCanvas,
   drawMemberEventCard,
   getCardDimensions,
 } from "./MemberEeventCard/index";
 import { encodeCanvas } from "./output.utils";
-import type { OutputOptions } from "../@Types/index";
+import type { OutputOptions, MemberEventLayout } from "../@Types/index";
 
 export async function genMemberEventPng(
   avatarUrl: string,

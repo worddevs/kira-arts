@@ -1,5 +1,6 @@
 import type { PresenceStatus, BorderAlign, OutputOptions, ColorInput } from "./common";
 import type { KiraThemeName } from "./theme";
+import type { KiraBadge } from "./user";
 
 export interface RankOptions {
   currentXp: number;
@@ -106,6 +107,30 @@ export interface LevelUpOptions {
   bypassCache?: boolean;
   theme?: KiraThemeName;
   output?: OutputOptions;
+}
+
+export interface LevelUpLayout {
+  username: string;
+  avatarUrl: string;
+  level: number;
+  currentXp?: number;
+  requiredXp?: number;
+  message?: string;
+  accentColor: string;
+  borderColors: string[];
+  barColors: string[];
+  barBackgroundColor?: string;
+  levelColor?: string;
+  usernameColor?: string;
+  messageColor?: string;
+  kickerColor?: string;
+  xpColor?: string;
+  customBackground?: string;
+  backgroundTint?: boolean;
+  avatarBorderColor?: string;
+  avatarFrameUrl?: string | null;
+  badges?: KiraBadge[];
+  maxBadges?: number;
 }
 
 export interface LeaderboardEntry {

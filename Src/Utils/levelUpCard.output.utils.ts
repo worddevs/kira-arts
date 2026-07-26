@@ -1,14 +1,8 @@
 import "./profileImage.output.utils";
 
-import type {
-  LevelUpLayout} from "./LevelUpCard/index";
-import {
-  createLevelUpCanvas,
-  drawLevelUpCard,
-  getCardDimensions,
-} from "./LevelUpCard/index";
+import { createLevelUpCanvas, drawLevelUpCard, getCardDimensions } from "./LevelUpCard/index";
 import { encodeCanvas } from "./output.utils";
-import type { OutputOptions } from "../@Types/index";
+import type { OutputOptions, LevelUpLayout } from "../@Types/index";
 
 export async function genLevelUpPng(
   layout: LevelUpLayout,

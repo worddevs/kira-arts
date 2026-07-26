@@ -3,9 +3,12 @@ import { fetchUserData } from "../Utils/fetch.utils";
 import { genLeaderboardPng } from "../Utils/leaderboardImage.output.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import type { ResolvedLeaderboardEntry} from "../Utils/LeaderboardImage/index";
 import { DEFAULT_ACCENT } from "../Utils/LeaderboardImage/index";
-import type { LeaderboardEntry, LeaderboardOptions} from "../@Types/index";
+import type {
+  LeaderboardEntry,
+  LeaderboardOptions,
+  ResolvedLeaderboardEntry,
+} from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
 const DEFAULT_MAX_ENTRIES = 5;

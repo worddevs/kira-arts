@@ -3,9 +3,8 @@ import { createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { parseHex, parseImg } from "../validations.utils";
 import { KiraError } from "../error.utils";
-import type { ProfileOptions } from "../../@Types/index";
+import type { ProfileOptions, CanvasBadge } from "../../@Types/index";
 import { otherImgs, alphaValue } from "./constants";
-import type { CanvasBadge } from "./badges";
 
 export async function genBase(
   options: ProfileOptions,

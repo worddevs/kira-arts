@@ -5,8 +5,7 @@ import { parseHex } from "../Utils/validations.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getDateOrString } from "../Utils/strings.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import type { MemberEventLayout } from "../Utils/MemberEeventCard/index";
-import type { MemberEventOptions} from "../@Types/index";
+import type { MemberEventLayout, MemberEventOptions } from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
 const DEFAULT_ACCENT = "#2DD4BF";

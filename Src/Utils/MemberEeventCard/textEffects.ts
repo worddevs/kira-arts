@@ -1,6 +1,6 @@
 import type { SKRSContext2D } from "@napi-rs/canvas";
 
-import type { TextEffect } from "./constants";
+import type { TextEffect } from "../../@Types/index";
 
 export function applyTextEffect(
   ctx: SKRSContext2D,

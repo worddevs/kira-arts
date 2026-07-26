@@ -5,14 +5,8 @@ import { drawCoverImage, drawGradientBorder, hexToRgba } from "../canvasShared.u
 import { parseHex } from "../validations.utils";
 import { truncateText } from "../strings.utils";
 import { withFallback } from "../fonts.utils";
-import type {
-  MemberEventLayout} from "./constants";
-import {
-  CORNER_RADIUS,
-  BANNER_HEIGHT,
-  BASE_AVATAR_SIZE,
-  AVATAR_BORDER
-} from "./constants";
+import type { MemberEventLayout } from "../../@Types/index";
+import { CORNER_RADIUS, BANNER_HEIGHT, BASE_AVATAR_SIZE, AVATAR_BORDER } from "./constants";
 import { normalizeFontScale, computeAvatarSize } from "./dimensions";
 import { applyTextEffect } from "./textEffects";
 import { drawServerTagPill, drawBadgesPill } from "./pills";

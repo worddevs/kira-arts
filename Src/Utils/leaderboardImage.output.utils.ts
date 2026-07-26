@@ -1,9 +1,7 @@
 import { ensureFontsRegistered } from "./fonts.utils";
 import { parseHex } from "./validations.utils";
 import { encodeCanvas } from "./output.utils";
-import type { LeaderboardOptions } from "../@Types/index";
-import type {
-  ResolvedLeaderboardEntry} from "./LeaderboardImage/index";
+import type { LeaderboardOptions, ResolvedLeaderboardEntry } from "../@Types/index";
 import {
   CARD_WIDTH,
   DEFAULT_ACCENT,

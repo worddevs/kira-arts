@@ -5,16 +5,8 @@ import { abbreviateNumber, truncateText } from "../strings.utils";
 import { parseHex } from "../validations.utils";
 import { resolveCardColors } from "../canvasShared.utils";
 import { withFallback } from "../fonts.utils";
-import type { LeaderboardOptions } from "../../@Types/index";
-import type {
-  ResolvedLeaderboardEntry} from "./constants";
-import {
-  CARD_WIDTH,
-  ROW_HEIGHT,
-  PADDING,
-  RANK_COLORS,
-  DEFAULT_ACCENT
-} from "./constants";
+import type { LeaderboardOptions, ResolvedLeaderboardEntry } from "../../@Types/index";
+import { CARD_WIDTH, ROW_HEIGHT, PADDING, RANK_COLORS, DEFAULT_ACCENT } from "./constants";
 import { hexToRgba } from "./colorUtils";
 
 export async function drawRow(

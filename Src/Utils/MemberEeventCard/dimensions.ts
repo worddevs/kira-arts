@@ -1,6 +1,6 @@
 import { createCanvas } from "@napi-rs/canvas";
 
-import type { MemberEventLayout } from "./constants";
+import type { MemberEventLayout } from "../../@Types/index";
 import { CARD_WIDTH, BANNER_HEIGHT, BASE_AVATAR_SIZE } from "./constants";
 
 export function normalizeFontScale(fontScale?: number): number {

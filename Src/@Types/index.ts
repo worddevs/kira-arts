@@ -28,11 +28,15 @@ export {
   CacheEntry,
   KiraMemberInfo,
   ShipLayout,
+  MemberEventLayout,
+  TextEffect,
+  ResolvedLeaderboardEntry,
 } from "./user";
 export {
   RankOptions,
   MemberEventOptions,
   LevelUpOptions,
+  LevelUpLayout,
   AchievementRarity,
   AchievementOptions,
   AchievementLayout,

@@ -11,7 +11,6 @@ export {
   RANK_COLORS,
   DEFAULT_ACCENT,
   DEFAULT_ROW_BASE,
-  ResolvedLeaderboardEntry,
 } from "./constants";
 export { hexToRgb, hexToRgba } from "./colorUtils";
 export { getHeaderHeight, getCardHeight, createLeaderboardCanvas } from "./dimensions";

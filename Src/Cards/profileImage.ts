@@ -2,7 +2,7 @@ import { KiraError } from "../Utils/error.utils";
 import { fetchUserData } from "../Utils/fetch.utils";
 import { genPng } from "../Utils/profileImage.output.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import type { ProfileOptions} from "../@Types/index";
+import type { ProfileOptions } from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
 export async function profileImage(userId: string, options: ProfileOptions = {}): Promise<Buffer> {

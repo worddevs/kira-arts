@@ -11,7 +11,7 @@ import { truncateText, abbreviateNumber } from "../strings.utils";
 import { withFallback } from "../fonts.utils";
 import { drawBadgesPill } from "../MemberEeventCard/pills";
 import { drawSparkles } from "../ShipCard/decorations";
-import type { LevelUpLayout } from "./constants";
+import type { LevelUpLayout } from "../../@Types/index";
 import { CORNER_RADIUS, AVATAR_SIZE, AVATAR_BORDER } from "./constants";
 
 export async function drawLevelUpCard(
