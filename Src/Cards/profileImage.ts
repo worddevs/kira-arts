@@ -20,7 +20,6 @@ export async function profileImage(userId: string, options: ProfileOptions = {})
     ...options,
     usernameColor: options.usernameColor ?? palette?.usernameColor,
     tagColor: options.tagColor ?? palette?.tagColor,
-    borderColor: options.borderColor ?? palette?.borderColor,
   };
 
   if (resolvedOptions.rankData) {
@@ -32,7 +31,7 @@ export async function profileImage(userId: string, options: ProfileOptions = {})
   }
 
   try {
-    const buffer = await genPng(data, resolvedOptions);
+    const buffer = await genPng(data, resolvedOptions, palette?.borderColor);
 
     return buffer;
   } catch (error: unknown) {

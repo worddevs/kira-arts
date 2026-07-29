@@ -20,7 +20,11 @@ import type { ProfileOptions, KiraUserData } from "../@Types/index";
 
 ensureFontsRegistered();
 
-export async function genPng(data: KiraUserData, options: ProfileOptions): Promise<Buffer> {
+export async function genPng(
+  data: KiraUserData,
+  options: ProfileOptions,
+  themeBorderColor?: string[],
+): Promise<Buffer> {
   const { basicInfo, assets } = data;
   const canvas = createCanvas(885, 303);
   const ctx = canvas.getContext("2d");
@@ -68,6 +72,7 @@ export async function genPng(data: KiraUserData, options: ProfileOptions): Promi
     nitroColors: data?.decoration?.profileColors,
     useRoleColor: options?.useRoleColor,
     roleColor: data?.decoration?.roleColor,
+    fallback: themeBorderColor ?? [],
   });
 
   if (borderColors.length > 0) {
