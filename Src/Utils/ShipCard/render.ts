@@ -84,7 +84,7 @@ export async function drawShipCard(
     ctx.textAlign = "left";
     ctx.font = withFallback("13px Helvetica");
     ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
-    ctx.fillText(`LA COMPATIBILIDAD ES ${layout.percentage}%`.toUpperCase(), 54, 37);
+    ctx.fillText(`COMPATIBILITY IS ${layout.percentage}%`.toUpperCase(), 54, 37);
 
     ctx.font = withFallback("24px Helvetica Bold");
     ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
