@@ -1,9 +1,9 @@
-import type { Canvas } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { type Canvas, createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { parseHex, parseImg } from "../validations.utils";
 import { KiraError } from "../error.utils";
-import type { ProfileOptions, CanvasBadge } from "../../@Types/index";
+import { MAX_BORDER_COLORS } from "../canvasShared.utils";
+import { type ProfileOptions, type CanvasBadge, KiraErrorCode } from "../../@Types/index";
 import { otherImgs, alphaValue } from "./constants";
 
 export async function genBase(
@@ -91,9 +91,10 @@ export async function genBorder(borderColors: string[], options: ProfileOptions)
   const canvas = createCanvas(885, 303);
   const ctx = canvas.getContext("2d");
 
-  if (borderColors.length > 20)
+  if (borderColors.length > MAX_BORDER_COLORS)
     throw new KiraError(
-      `Invalid borderColor length (${borderColors.length}) must be a maximum of 20 colors`,
+      `Invalid borderColor length (${borderColors.length}), must be a maximum of ${MAX_BORDER_COLORS} colors`,
+      KiraErrorCode.Validation,
     );
 
   const gradX = options.borderAllign == "vertical" ? 0 : 885;

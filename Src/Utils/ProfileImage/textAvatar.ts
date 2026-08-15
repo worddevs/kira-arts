@@ -1,5 +1,4 @@
-import type { Canvas, SKRSContext2D } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { type Canvas, type SKRSContext2D, createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { parseUsername, getDateOrString } from "../strings.utils";
 import { withFallback } from "../fonts.utils";

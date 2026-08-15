@@ -270,3 +270,53 @@ export interface SourceMeta {
   color: string;
   icon: SourceIconKind;
 }
+
+export type GiveawayStatus = "active" | "ended";
+
+export interface GiveawayWinner {
+  username: string;
+  avatarUrl: string;
+}
+
+export interface GiveawayOptions {
+  hostId?: string;
+  hostName?: string;
+  hostAvatar?: string;
+  winnersCount?: number;
+  winnerIds?: string[];
+  status?: GiveawayStatus;
+  endsAt?: Date | string;
+  endedText?: string;
+  description?: string;
+  accentColor?: string;
+  borderColor?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  useRoleColor?: boolean;
+  customBackground?: string;
+  prizeColor?: string;
+  hostColor?: string;
+  guildId?: string;
+  bypassCache?: boolean;
+  localDateType?: string;
+  theme?: KiraThemeName;
+  output?: OutputOptions;
+  participantsCount?: number;
+}
+
+export interface GiveawayLayout {
+  prize: string;
+  description?: string;
+  status: GiveawayStatus;
+  winnersCount: number;
+  hostName?: string;
+  hostAvatarUrl?: string;
+  winners?: GiveawayWinner[];
+  dateText?: string;
+  accentColor: string;
+  borderColors: string[];
+  customBackground?: string;
+  prizeColor?: string;
+  hostColor?: string;
+  participantsCount?: number;
+}

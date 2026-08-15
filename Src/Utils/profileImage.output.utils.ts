@@ -101,6 +101,7 @@ export async function genPng(
 
   if (!options?.removeAvatarFrame && data?.decoration?.avatarFrame) {
     const avatarFrame = await genAvatarFrame(data, options);
+
     ctx.drawImage(avatarFrame, 0, 0);
   }
 

@@ -5,8 +5,7 @@ import { KiraError } from "./error.utils";
 import { getBadgesFromFlags, getGuildMemberInfo } from "./badges.utils";
 import { getClient } from "../client";
 import { buildCacheKey, getCached, setCached } from "./cache.utils";
-import type { KiraUserData, RawUserProfileResponse } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type KiraUserData, type RawUserProfileResponse, KiraErrorCode } from "../@Types/index";
 import { decimalToHex } from "./validations.utils";
 import { loadImageSafe } from "./canvasShared.utils";
 

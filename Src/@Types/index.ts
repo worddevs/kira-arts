@@ -24,6 +24,9 @@ export {
   KiraUserDecoration,
   KiraUserData,
   RawUserProfileResponse,
+  RawProfileBadge,
+  BadgeCategory,
+  CatalogEntry,
   ParsedUsername,
   CacheEntry,
   KiraMemberInfo,
@@ -49,6 +52,10 @@ export {
   SourceIconKind,
   SourceMeta,
   NowPlayingLayout,
+  GiveawayStatus,
+  GiveawayWinner,
+  GiveawayOptions,
+  GiveawayLayout,
 } from "./options";
 export {
   MoonlinkTrackLike,

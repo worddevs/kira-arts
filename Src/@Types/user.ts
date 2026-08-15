@@ -47,6 +47,46 @@ export interface KiraUserData {
   decoration: KiraUserDecoration;
 }
 
+export interface RawProfileBadge {
+  id: string;
+  description: string;
+  icon: string;
+  simple_icon_url?: string;
+}
+
+export interface RawProfileBadge {
+  id: string;
+  description: string;
+  icon: string;
+  simple_icon_url?: string;
+}
+
+export type BadgeCategory =
+  | "staff"
+  | "partner"
+  | "certifiedMod"
+  | "hypesquadEvents"
+  | "hypesquadHouse"
+  | "bugHunter"
+  | "verifiedDeveloper"
+  | "activeDeveloper"
+  | "verifiedBot"
+  | "nitro"
+  | "boost"
+  | "quest"
+  | "orb"
+  | "legacyUsername"
+  | "gifting"
+  | "guildTag"
+  | "event"
+  | "other";
+
+export interface CatalogEntry {
+  test: RegExp;
+  name: string;
+  category: BadgeCategory;
+}
+
 export interface RawUserProfileResponse {
   theme_colors?: number[];
   user_profile_customization?: {

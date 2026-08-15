@@ -1,5 +1,4 @@
-import type { Canvas } from "@napi-rs/canvas";
-import { createCanvas } from "@napi-rs/canvas";
+import { type Canvas, createCanvas } from "@napi-rs/canvas";
 
 import { abbreviateNumber } from "../strings.utils";
 import { withFallback } from "../fonts.utils";

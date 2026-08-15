@@ -97,6 +97,57 @@ export function getDateOrString(
   }
 }
 
+export function formatGiveawayEndText(
+  endsAt: Date | string,
+  from: number = Date.now(),
+  localDateType: string = "es",
+): string {
+  const target = endsAt instanceof Date ? endsAt : new Date(endsAt);
+  const diffMs = target.getTime() - from;
+  const isEs = localDateType.startsWith("es");
+
+  if (diffMs <= 0) {
+    return isEs ? "El sorteo ya finalizó" : "The giveaway already ended";
+  }
+
+  const totalMinutes = Math.round(diffMs / 60000);
+
+  if (totalMinutes < 60) {
+    const minutes = Math.max(1, totalMinutes);
+    const unit = isEs
+      ? minutes === 1
+        ? "minuto"
+        : "minutos"
+      : minutes === 1
+        ? "minute"
+        : "minutes";
+    return isEs ? `Termina en ${minutes} ${unit}` : `Ends in ${minutes} ${unit}`;
+  }
+
+  const totalHours = Math.round(diffMs / 3600000);
+
+  if (totalHours < 24) {
+    const unit = isEs ? (totalHours === 1 ? "hora" : "horas") : totalHours === 1 ? "hour" : "hours";
+    return isEs ? `Termina en ${totalHours} ${unit}` : `Ends in ${totalHours} ${unit}`;
+  }
+
+  const totalDays = Math.round(diffMs / 86400000);
+
+  if (totalDays < 7) {
+    const unit = isEs ? (totalDays === 1 ? "día" : "días") : totalDays === 1 ? "day" : "days";
+    return isEs ? `Termina en ${totalDays} ${unit}` : `Ends in ${totalDays} ${unit}`;
+  }
+
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  };
+  const dateText = target.toLocaleDateString(localDateType, dateOptions);
+
+  return isEs ? `Termina el ${dateText}` : `Ends on ${dateText}`;
+}
+
 export function truncateText(text: string, limit: number = 25, fromEnd: boolean = false): string {
   if (text.length > limit) {
     if (fromEnd) {

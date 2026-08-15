@@ -7,7 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.5] - 2026-07-XX
+## [1.3.0] - 2026-08-14
+ 
+### Added
+- `giveawayImage(prize, options)` — Giveaway card with prize, host attribution,
+  winner count, entry status (`active` | `ended`), and countdown/end-date text.
+- Optional host attribution (`hostId`, or manual `hostName`/`hostAvatar`) and up
+  to a configurable number of winner avatars once a giveaway ends.
+- Support for themes, role/Nitro border colors, and custom backgrounds on the
+  Giveaway card, matching the rest of the cards.
+- All Giveaway types (`GiveawayOptions`, `GiveawayStatus`, `GiveawayWinner`,
+  `GiveawayLayout`) exported from the package root.
+- Custom `borderColor` now accepts up to **4 colors** (a multi-stop gradient),
+  up from a single color or a fixed 2-color pair. Applies to every card that
+  resolves its border through the shared color-resolution logic.
+
+### Changed
+- Unified the border color length validation across cards behind a single
+  `MAX_BORDER_COLORS` constant (previously `ProfileImage` enforced its own,
+  inconsistent limit of 20 colors with no matching validation elsewhere).
+  Passing more than 4 colors now throws a `KiraError` with
+  `KiraErrorCode.Validation` from a single, predictable source.
+
+## [1.2.5] - 2026-08-07
 
 ### Fixed
 - `shipImage()` had a hardcoded Spanish string in the compatibility percentage
@@ -15,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `"COMPATIBILITY IS X%"`, consistent with the rest of the library's
   public-facing text. Thanks to @NotAvalible111 for the fix!
 
-## [1.2.4] - 2026-07-XX
+## [1.2.4] - 2026-07-29
 
 ### Fixed
 - `profileImage()` always pre-filled `borderColor` with the active theme's
@@ -28,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `useNitroTheme` is enabled) → **role color** (when `useRoleColor` is
   enabled) → **theme default**, as a true fallback.
 
-## [1.2.3] - 2026-07-XX
+## [1.2.3] - 2026-07-26
 
 ### Changed
 - Moved `SourceIconKind` and `SourceMeta` (Now Playing card's platform-badge

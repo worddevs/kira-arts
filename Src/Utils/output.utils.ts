@@ -1,8 +1,7 @@
 import type { Canvas } from "@napi-rs/canvas";
 
 import { KiraError } from "./error.utils";
-import type { OutputFormat, OutputOptions } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type OutputFormat, type OutputOptions, KiraErrorCode } from "../@Types/index";
 
 const MIME_MAP: Record<OutputFormat, string> = {
   png: "image/png",

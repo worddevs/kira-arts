@@ -1,27 +1,36 @@
-import type { Image, SKRSContext2D } from "@napi-rs/canvas";
-import { loadImage } from "@napi-rs/canvas";
-import type { ColorResolutionSources } from "../@Types/index";
+import { type Image, type SKRSContext2D, loadImage } from "@napi-rs/canvas";
+import { type ColorResolutionSources, KiraErrorCode } from "../@Types/index";
+import { KiraError } from "./error.utils";
 import { parseHex } from "./validations.utils";
+
+export const MAX_BORDER_COLORS = 4;
 
 export function resolveCardColors(sources: ColorResolutionSources): string[] {
   if (sources.removeBorder) return [];
 
+  let colors: string[];
+
   if (typeof sources.custom !== "undefined") {
     const list = Array.isArray(sources.custom) ? sources.custom : [sources.custom];
-    return list.map((color) => parseHex(color));
+    colors = list.map((color) => parseHex(color));
+  } else if (sources.useNitroTheme && sources.nitroColors && sources.nitroColors.length > 0) {
+    colors = sources.nitroColors.map((color) => parseHex(color));
+  } else if (sources.useRoleColor && sources.roleColor) {
+    colors = [parseHex(sources.roleColor)];
+  } else {
+    colors = (sources.fallback ?? []).map((color) =>
+      typeof color === "string" ? color : parseHex(color),
+    );
   }
 
-  if (sources.useNitroTheme && sources.nitroColors && sources.nitroColors.length > 0) {
-    return sources.nitroColors.map((color) => parseHex(color));
+  if (colors.length > MAX_BORDER_COLORS) {
+    throw new KiraError(
+      `Invalid borderColor length (${colors.length}), must be a maximum of ${MAX_BORDER_COLORS} colors`,
+      KiraErrorCode.Validation,
+    );
   }
 
-  if (sources.useRoleColor && sources.roleColor) {
-    return [parseHex(sources.roleColor)];
-  }
-
-  return (sources.fallback ?? []).map((color) =>
-    typeof color === "string" ? color : parseHex(color),
-  );
+  return colors;
 }
 
 export async function loadImageSafe(

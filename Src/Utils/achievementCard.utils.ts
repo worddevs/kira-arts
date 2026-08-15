@@ -1,5 +1,4 @@
-import type { SKRSContext2D } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { type SKRSContext2D, createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { drawCoverImage, drawGradientBorder, hexToRgba } from "./canvasShared.utils";
 import { parseHex } from "./validations.utils";

@@ -1,5 +1,4 @@
-import type { Canvas } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { type Canvas, createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { KiraError } from "../error.utils";
 import type { ProfileOptions, KiraUserData } from "../../@Types/index";

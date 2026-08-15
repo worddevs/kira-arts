@@ -6,6 +6,7 @@ export { levelUpImage } from "./Cards/levelUpImage";
 export { achievementImage } from "./Cards/achievementImage";
 export { shipImage } from "./Cards/shipImage";
 export { nowPlayingImage } from "./Cards/nowPlayingImage";
+export { giveawayImage } from "./Cards/giveawayImage";
 export { computeCompatibility, pickShipMessage } from "./Utils/ShipCard/index";
 export {
   fromMoonlinkTrack,
