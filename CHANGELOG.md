@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.5] - 2026-07-XX
+
+### Fixed
+- `shipImage()` had a hardcoded Spanish string in the compatibility percentage
+  label (`"LA COMPATIBILIDAD ES X%"`) regardless of locale. Now correctly shows
+  `"COMPATIBILITY IS X%"`, consistent with the rest of the library's
+  public-facing text. Thanks to @NotAvalible111 for the fix!
+
+## [1.2.4] - 2026-07-XX
+
+### Fixed
+- `profileImage()` always pre-filled `borderColor` with the active theme's
+  default color before the internal renderer could check whether the caller
+  had explicitly set one. This silently broke Nitro profile-theme
+  auto-detection and role-color fallback — the theme default would always
+  "win", regardless of `useNitroTheme` / `useRoleColor` configuration.
+- Border color now correctly resolves in the documented priority order:
+  **custom `borderColor`** → **Nitro profile theme** (2-color gradient, when
+  `useNitroTheme` is enabled) → **role color** (when `useRoleColor` is
+  enabled) → **theme default**, as a true fallback.
+
+## [1.2.3] - 2026-07-XX
+
+### Changed
+- Moved `SourceIconKind` and `SourceMeta` (Now Playing card's platform-badge
+  types) out of `Src/Utils/NowPlayingCard/sources.ts` and into `Src/@Types`,
+  matching the rest of the library's convention of keeping `@Types` limited to
+  pure type/interface declarations and `Src/Utils` limited to implementation.
+  Both are now properly exported from the package root, so consumers can type
+  against them directly instead of only through inference.
+
 ## [1.2.2] - 2026-07-25
 
 ### Fixed

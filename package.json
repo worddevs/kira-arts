@@ -11,7 +11,7 @@
     "image-generation",
     "typescript"
   ],
-  "homepage": "https://github.com/worddevs/kira-arts#readme",
+  "homepage": "https://kira-arts.chocofactory.dev/",
   "bugs": {
     "url": "https://github.com/worddevs/kira-arts/issues"
   },
@@ -19,14 +19,12 @@
     "type": "git",
     "url": "git+https://github.com/worddevs/kira-arts.git"
   },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/worddevs"
-    }
-  ],
+  "funding": "https://github.com/worddevs/kira-arts?sponsor",
   "license": "Apache-2.0",
-  "author": "worddevs",
+  "contributors": [
+    "𝒞𝒽𝑜𝒸𝑜",
+    "NotAvalible111"
+  ],
   "type": "module",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
@@ -51,25 +49,27 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build",
+    "prepack": "node Scripts/swap-readme.mjs before",
+    "postpack": "node Scripts/swap-readme.mjs after",
     "verify": "npm run format && npm run lint && npm run build && npm run test"
   },
   "peerDependencies": {
     "discord.js": "^14.27.0"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^1.0.6"
+    "@napi-rs/canvas": "^1.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@vitest/coverage-v8": "^4.1.10",
     "copyfiles": "^2.4.1",
     "discord.js": "^14.27.0",
-    "eslint": "^10.8.1",
+    "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.67.0",
+    "typescript-eslint": "^8.65.0",
     "vitest": "^4.1.10"
   }
 }

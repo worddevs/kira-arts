@@ -5,21 +5,9 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 **📚 Full documentation, live examples, and a Playground: [documentation](https://kira-arts.chocofactory.dev/)**
 
 [![npm version](https://img.shields.io/npm/v/kira-arts.svg)](https://www.npmjs.com/package/kira-arts)
-[![npm downloads](https://img.shields.io/npm/dm/kira-arts.svg)](https://www.npmjs.com/package/kira-arts)
-[![install size](https://packagephobia.com/badge?p=kira-arts)](https://packagephobia.com/result?p=kira-arts)
-[![license](https://img.shields.io/npm/l/kira-arts.svg)](./LICENSE)
+[![license](https://img.shields.io/npm/l/kira-arts.svg)](https://github.com/worddevs/kira-arts/blob/main/LICENSE)
 [![node](https://img.shields.io/node/v/kira-arts.svg)](https://www.npmjs.com/package/kira-arts)
-[![types](https://img.shields.io/npm/types/kira-arts.svg)](./dist/index.d.ts)
-[![TypeScript](https://img.shields.io/badge/built_with-TypeScript-3178c6.svg)](https://www.typescriptlang.org/)
-[![tests](https://github.com/worddevs/kira-arts/actions/workflows/tests.yml/badge.svg)](https://github.com/worddevs/kira-arts/actions/workflows/tests.yml)
-[![release](https://github.com/worddevs/kira-arts/actions/workflows/release.yml/badge.svg)](https://github.com/worddevs/kira-arts/actions/workflows/release.yml)
-[![GitHub stars](https://img.shields.io/github/stars/worddevs/kira-arts.svg?style=flat)](https://github.com/worddevs/kira-arts/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/worddevs/kira-arts.svg?style=flat)](https://github.com/worddevs/kira-arts/network/members)
-[![contributors](https://img.shields.io/github/contributors/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/graphs/contributors)
-[![last commit](https://img.shields.io/github/last-commit/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/commits/main)
-[![open issues](https://img.shields.io/github/issues/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/issues)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![types](https://img.shields.io/npm/types/kira-arts.svg)](https://github.com/worddevs/kira-arts)
 
 ## ✨ Features
 
