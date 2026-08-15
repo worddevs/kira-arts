@@ -1,5 +1,4 @@
-import { rename, access } from "node:fs/promises";
-import { constants } from "fs";
+import { promises as fs, constants } from "fs";
 
 const README = "README.md";
 const README_NPM = "README.npm.md";
