@@ -57,7 +57,7 @@ const buffer = await profileImage(userId, { guildId, useRoleColor: true, theme: 
 await interaction.reply({ files: [toAttachment(buffer, "profile", "png")] });
 ```
 
-Every other card, the music adapters, theming, caching, error handling, and output options are documented with live examples at **[kira-arts.chocofactory.dev](https://kira-arts.chocofactory.dev/)**.
+Every other card, the music adapters, theming, caching, error handling, and output options are documented with live examples at **[documentation](https://kira-arts.chocofactory.dev/)**.
 
 ## 📄 License
 
