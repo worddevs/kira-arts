@@ -1,5 +1,7 @@
-import { type Image, type SKRSContext2D, loadImage } from "@napi-rs/canvas";
-import { type ColorResolutionSources, KiraErrorCode } from "../@Types/index";
+import type { Image, SKRSContext2D } from "@napi-rs/canvas";
+import { loadImage } from "@napi-rs/canvas";
+import type { ColorResolutionSources } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
 import { KiraError } from "./error.utils";
 import { parseHex } from "./validations.utils";
 
