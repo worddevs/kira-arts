@@ -3,7 +3,7 @@ import { fetchUserData } from "../Utils/fetch.utils";
 import { genMemberEventPng } from "../Utils/memberEventCard.output.utils";
 import { parseHex } from "../Utils/validations.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
-import { getDateOrString } from "../Utils/strings.utils";
+import { getDateOrString, normalizeDisplayText } from "../Utils/strings.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import { type MemberEventLayout, type MemberEventOptions, KiraErrorCode } from "../@Types/index";
 
@@ -22,11 +22,23 @@ function formatMessage(
     .replace(/\{memberCount\}/g, memberCount != null ? String(memberCount) : "");
 }
 
+function formatMemberCount(memberCount: number, localDateType: string): string {
+  const isEs = localDateType.startsWith("es");
+  return isEs ? `Member #${memberCount}` : `Member #${memberCount}`;
+}
+
+function formatKindLabel(kind: "welcome" | "leave", localDateType: string): string {
+  const isEs = localDateType.startsWith("es");
+  if (kind === "welcome") return isEs ? "NEW MEMBER" : "NEW MEMBER";
+  return isEs ? "MEMBER LEFT" : "MEMBER LEFT";
+}
+
 export async function renderMemberEventCard(
   userId: string,
   guildName: string,
   defaultMessage: string,
   options: MemberEventOptions = {},
+  kind: "welcome" | "leave" = "welcome",
 ): Promise<Buffer> {
   if (!userId || typeof userId !== "string") {
     throw new KiraError("A valid userId is required", KiraErrorCode.Validation);
@@ -37,7 +49,7 @@ export async function renderMemberEventCard(
   }
 
   const data = await fetchUserData(userId, options.guildId, options.bypassCache);
-  const username = data.basicInfo.globalName || data.basicInfo.username;
+  const username = normalizeDisplayText(data.basicInfo.globalName || data.basicInfo.username);
   const avatarUrl = data.assets.avatarURL ?? data.assets.defaultAvatarURL;
 
   const palette = getThemePalette(options.theme);
@@ -57,12 +69,18 @@ export async function renderMemberEventCard(
     fallback: palette?.borderColor ?? [accentColor],
   });
 
+  const localDateType = options.localDateType ?? "es";
   const rawMessage = options.message ?? defaultMessage;
-  const message = formatMessage(rawMessage, username, guildName, options.memberCount);
+  const message = normalizeDisplayText(
+    formatMessage(rawMessage, username, normalizeDisplayText(guildName), options.memberCount),
+  );
 
   const dateText = options.showDate
-    ? getDateOrString(options.date, Date.now(), options.localDateType ?? "es")
+    ? getDateOrString(options.date, Date.now(), localDateType)
     : undefined;
+
+  const memberCountText =
+    options.memberCount != null ? formatMemberCount(options.memberCount, localDateType) : undefined;
 
   const fontScale = options.fontScale && options.fontScale > 0 ? options.fontScale : 1;
   const avatarFrameUrl = options.showAvatarDecoration ? data.decoration.avatarFrame : null;
@@ -70,8 +88,11 @@ export async function renderMemberEventCard(
   const badges = options.showBadges ? data.assets.badges : undefined;
 
   const layout: MemberEventLayout = {
+    kind,
+    kindLabel: formatKindLabel(kind, localDateType),
     message,
     memberCount: options.memberCount,
+    memberCountText,
     dateText,
     accentColor,
     borderColors,

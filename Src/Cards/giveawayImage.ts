@@ -9,6 +9,8 @@ import { MAX_WINNERS_SHOWN, DEFAULT_ACCENT } from "../Utils/GiveawayCard/constan
 import type { GiveawayLayout, GiveawayOptions, GiveawayWinner } from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
+export type { GiveawayOptions } from "../@Types/index";
+
 export async function giveawayImage(prize: string, options: GiveawayOptions = {}): Promise<Buffer> {
   if (!prize || typeof prize !== "string") {
     throw new KiraError("A valid prize is required", KiraErrorCode.Validation);

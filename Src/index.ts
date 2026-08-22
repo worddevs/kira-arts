@@ -68,8 +68,4 @@ export type {
   LavalinkTrackLike,
   DiscordPlayerTrackLike,
   DistubeSongLike,
-  GiveawayStatus,
-  GiveawayWinner,
-  GiveawayOptions,
-  KiraCacheOptions,
 } from "./@Types/index";

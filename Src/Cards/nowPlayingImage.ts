@@ -4,12 +4,10 @@ import { genNowPlayingPng } from "../Utils/nowPlayingCard.output.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import { resolveSourceMeta } from "../Utils/NowPlayingCard/index";
-import {
-  type NowPlayingTrack,
-  type NowPlayingOptions,
-  type NowPlayingLayout,
-  KiraErrorCode,
-} from "../@Types/index";
+import type { NowPlayingTrack, NowPlayingOptions, NowPlayingLayout } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
+
+export type { NowPlayingTrack, NowPlayingOptions } from "../@Types/index";
 
 const DEFAULT_ACCENT = "#1DB954";
 

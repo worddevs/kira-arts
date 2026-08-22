@@ -208,3 +208,13 @@ export function formatDuration(ms: number | undefined | null): string {
 
   return `${minutes}:${seconds}`;
 }
+
+export function normalizeDisplayText(text: string): string {
+  if (!text) return text;
+
+  try {
+    return text.normalize("NFKC");
+  } catch {
+    return text;
+  }
+}

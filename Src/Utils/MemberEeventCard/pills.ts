@@ -4,6 +4,49 @@ import { truncateText } from "../strings.utils";
 import { withFallback } from "../fonts.utils";
 import type { KiraBadge, KiraServerTag } from "../../@Types/index";
 
+const JOIN_DOT_COLOR = "#3ba55d";
+const LEAVE_DOT_COLOR = "#ed4245";
+
+export function drawEventKindPill(
+  ctx: SKRSContext2D,
+  width: number,
+  kind: "welcome" | "leave",
+  label: string,
+): void {
+  const dotColor = kind === "welcome" ? JOIN_DOT_COLOR : LEAVE_DOT_COLOR;
+
+  const dotSize = 7;
+  const paddingX = 12;
+  const pillHeight = 26;
+  const gap = 8;
+
+  ctx.font = withFallback("12px Helvetica Bold");
+  const textWidth = ctx.measureText(label).width;
+  const pillWidth = paddingX * 2 + dotSize + gap + textWidth;
+  const pillX = width / 2 - pillWidth / 2;
+  const pillY = 16;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(pillX, pillY, pillWidth, pillHeight, [pillHeight / 2]);
+  ctx.fillStyle = "rgba(10, 10, 14, 0.55)";
+  ctx.fill();
+  ctx.restore();
+
+  const dotCx = pillX + paddingX + dotSize / 2;
+  const dotCy = pillY + pillHeight / 2;
+
+  ctx.beginPath();
+  ctx.arc(dotCx, dotCy, dotSize / 2, 0, Math.PI * 2);
+  ctx.fillStyle = dotColor;
+  ctx.fill();
+
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = withFallback("12px Helvetica Bold");
+  ctx.fillText(label, pillX + paddingX + dotSize + gap, pillY + pillHeight / 2 + 4);
+}
+
 export async function drawServerTagPill(
   ctx: SKRSContext2D,
   serverTag: KiraServerTag,

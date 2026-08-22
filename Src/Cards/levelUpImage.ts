@@ -5,7 +5,10 @@ import { parseHex } from "../Utils/validations.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import type { LevelUpLayout } from "../Utils/LevelUpCard/index";
-import { type LevelUpOptions, KiraErrorCode } from "../@Types/index";
+import type { LevelUpOptions } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
+
+export type { LevelUpOptions } from "../@Types/index";
 
 const DEFAULT_ACCENT = "#FACC15";
 
