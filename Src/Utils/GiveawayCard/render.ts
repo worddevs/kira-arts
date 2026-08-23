@@ -19,7 +19,14 @@ import {
   ACTIVE_STATUS_COLOR,
   ENDED_STATUS_COLOR,
 } from "./constants";
-import { drawGiftIcon, drawTrophyIcon, drawConfetti, drawStatusPill, drawStarIcon, drawClockIcon } from "./decorations";
+import {
+  drawGiftIcon,
+  drawTrophyIcon,
+  drawConfetti,
+  drawStatusPill,
+  drawStarIcon,
+  drawClockIcon,
+} from "./decorations";
 import type { GiveawayLayout } from "../../@Types/index";
 
 async function drawAvatarCircle(
@@ -166,10 +173,9 @@ export async function drawGiveawayCard(
   ctx.font = withFallback("15px Helvetica");
   const winnersLabelWidth = ctx.measureText(winnersLabel).width;
 
-  const fixedWidth = HOST_AVATAR_SIZE + avatarGap + midGap + trophySize + trophyGap + winnersLabelWidth;
-  const hostMaxWidth = layout.hostName
-    ? Math.max(60, maxRowWidth - fixedWidth)
-    : 0;
+  const fixedWidth =
+    HOST_AVATAR_SIZE + avatarGap + midGap + trophySize + trophyGap + winnersLabelWidth;
+  const hostMaxWidth = layout.hostName ? Math.max(60, maxRowWidth - fixedWidth) : 0;
 
   ctx.font = withFallback("15px Helvetica");
   const hostText = layout.hostName
@@ -178,7 +184,13 @@ export async function drawGiveawayCard(
   const hostTextWidth = layout.hostName ? ctx.measureText(hostText).width : 0;
 
   const rowWidth = layout.hostName
-    ? HOST_AVATAR_SIZE + avatarGap + hostTextWidth + midGap + trophySize + trophyGap + winnersLabelWidth
+    ? HOST_AVATAR_SIZE +
+      avatarGap +
+      hostTextWidth +
+      midGap +
+      trophySize +
+      trophyGap +
+      winnersLabelWidth
     : trophySize + trophyGap + winnersLabelWidth;
 
   let rowX = width / 2 - rowWidth / 2;
@@ -186,7 +198,14 @@ export async function drawGiveawayCard(
   if (layout.hostName) {
     const avatarCx = rowX + HOST_AVATAR_SIZE / 2;
 
-    await drawAvatarCircle(ctx, avatarCx, cursorY, HOST_AVATAR_SIZE, layout.hostAvatarUrl, accentColor);
+    await drawAvatarCircle(
+      ctx,
+      avatarCx,
+      cursorY,
+      HOST_AVATAR_SIZE,
+      layout.hostAvatarUrl,
+      accentColor,
+    );
 
     ctx.font = withFallback("15px Helvetica");
     ctx.fillStyle = layout.hostColor ? parseHex(layout.hostColor) : "rgba(255, 255, 255, 0.85)";

@@ -31,6 +31,9 @@ export {
   MemberEventLayout,
   TextEffect,
   ResolvedLeaderboardEntry,
+  BadgeCategory,
+  CatalogEntry,
+  RawProfileBadge,
 } from "./user";
 export {
   RankOptions,

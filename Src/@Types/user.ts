@@ -54,13 +54,6 @@ export interface RawProfileBadge {
   simple_icon_url?: string;
 }
 
-export interface RawProfileBadge {
-  id: string;
-  description: string;
-  icon: string;
-  simple_icon_url?: string;
-}
-
 export type BadgeCategory =
   | "staff"
   | "partner"
