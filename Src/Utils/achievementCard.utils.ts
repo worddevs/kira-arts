@@ -21,7 +21,7 @@ const RARITY_COLORS: Record<AchievementRarity, string> = {
 
 const RARITY_LABELS: Record<AchievementRarity, string> = {
   common: "Common",
-  rare: "Queer",
+  rare: "Rare",
   epic: "Epic",
   legendary: "Legendary",
 };

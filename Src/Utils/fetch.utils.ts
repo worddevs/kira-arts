@@ -78,7 +78,6 @@ function normalizeDisplayText<T extends string | null>(value: T): T {
   if (typeof value !== "string") return value;
   try {
     const normalized = value.normalize("NFKC");
-    if (normalized !== value) return normalized as T;
     return applyMathScriptFallback(normalized) as T;
   } catch {
     return value;

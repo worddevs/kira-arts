@@ -1,7 +1,7 @@
 import { renderMemberEventCard } from "./memberEvent";
 import type { MemberEventOptions } from "../@Types/index";
 
-const DEFAULT_WELCOME_MESSAGE = "¡Welcome to {server}!";
+const DEFAULT_WELCOME_MESSAGE = "Welcome to {server}!";
 
 export async function welcomeImage(
   userId: string,

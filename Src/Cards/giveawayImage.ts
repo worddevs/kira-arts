@@ -6,8 +6,12 @@ import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { formatGiveawayEndText } from "../Utils/strings.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import { MAX_WINNERS_SHOWN, DEFAULT_ACCENT } from "../Utils/GiveawayCard/constants";
-import type { GiveawayLayout, GiveawayOptions, GiveawayWinner } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import {
+  type GiveawayLayout,
+  type GiveawayOptions,
+  type GiveawayWinner,
+  KiraErrorCode,
+} from "../@Types/index";
 
 export async function giveawayImage(prize: string, options: GiveawayOptions = {}): Promise<Buffer> {
   if (!prize || typeof prize !== "string") {
@@ -26,6 +30,7 @@ export async function giveawayImage(prize: string, options: GiveawayOptions = {}
   const hostAvatarUrl =
     options.hostAvatar ?? hostData?.assets.avatarURL ?? hostData?.assets.defaultAvatarURL;
 
+  const totalWinnerIds = options.winnerIds?.length ?? 0;
   const winnerIds = options.winnerIds?.slice(0, MAX_WINNERS_SHOWN) ?? [];
   const winnerDataList = await Promise.all(
     winnerIds.map((winnerId) => fetchUserData(winnerId, options.guildId, bypassCache)),
@@ -36,7 +41,7 @@ export async function giveawayImage(prize: string, options: GiveawayOptions = {}
     avatarUrl: data.assets.avatarURL ?? data.assets.defaultAvatarURL,
   }));
 
-  const winnersCount = options.winnersCount ?? (winnerIds.length > 0 ? winnerIds.length : 1);
+  const winnersCount = options.winnersCount ?? (totalWinnerIds > 0 ? totalWinnerIds : 1);
 
   const palette = getThemePalette(options.theme);
   const accentColor = options.accentColor
@@ -55,9 +60,9 @@ export async function giveawayImage(prize: string, options: GiveawayOptions = {}
 
   const dateText =
     status === "ended"
-      ? (options.endedText ?? "Sorteo finalizado")
+      ? (options.endedText ?? "Giveaway ended")
       : options.endsAt
-        ? formatGiveawayEndText(options.endsAt, Date.now(), options.localDateType ?? "es")
+        ? formatGiveawayEndText(options.endsAt, Date.now(), options.localDateType ?? "en")
         : undefined;
 
   const layout: GiveawayLayout = {

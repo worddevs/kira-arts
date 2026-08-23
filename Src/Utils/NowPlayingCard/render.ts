@@ -29,12 +29,6 @@ function drawPill(
   ctx.restore();
 }
 
-/**
- * Draws a partial record disc peeking out from behind the artwork square
- * (classic "album sliding out of its sleeve" look). Must be called BEFORE
- * the artwork square itself so the square's own fill covers the overlapping
- * part, leaving only the crescent that extends past its edge visible.
- */
 function drawVinylPeek(
   ctx: SKRSContext2D,
   artworkX: number,
@@ -110,13 +104,6 @@ async function drawArtwork(
   ctx.clip();
 
   if (artwork) {
-    // Square-ish covers (Spotify/Apple Music/local files) fill the slot
-    // edge-to-edge with a plain cover-fit crop. Wide/tall sources — most
-    // commonly 16:9 YouTube video thumbnails used as "artwork" — get
-    // letterboxed instead: a blurred cover-fit copy fills the background so
-    // there's no empty space, and the full, uncropped thumbnail sits on top.
-    // Cropping a 16:9 frame to a square routinely cuts off text/logos along
-    // the edges, which is what was happening before.
     const ratio = artwork.width / artwork.height;
     const isNearlySquare = ratio > 0.85 && ratio < 1.18;
 

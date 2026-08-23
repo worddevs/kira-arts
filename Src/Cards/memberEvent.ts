@@ -61,7 +61,7 @@ export async function renderMemberEventCard(
   const message = formatMessage(rawMessage, username, guildName, options.memberCount);
 
   const dateText = options.showDate
-    ? getDateOrString(options.date, Date.now(), options.localDateType ?? "es")
+    ? getDateOrString(options.date, Date.now(), options.localDateType ?? "en")
     : undefined;
 
   const fontScale = options.fontScale && options.fontScale > 0 ? options.fontScale : 1;

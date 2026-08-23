@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-08-23
+
+### Fixed
+- Removed `Src/Utils/badgeMap.ts`, a dead, orphaned duplicate of the badge
+  catalog in `badges.utils.ts`. Nothing in the codebase imported it, and it
+  carried an outdated label for `CertifiedModerator`
+  (`"Discord Certified Moderator"` instead of the official
+  `"Moderator Programs Alumni"` already used elsewhere).
+- Restored the npm/GitHub README split tooling (`Scripts/swap-readme.mjs` and
+  the `prepack`/`postpack` lifecycle hooks), which had been dropped. npm now
+  correctly publishes `README.npm.md` in place of the full `README.md`, while
+  the GitHub repository keeps the complete version untouched.
+
 ## [1.3.0] - 2026-08-14
  
 ### Added

@@ -1,7 +1,7 @@
 import { renderMemberEventCard } from "./memberEvent";
 import type { MemberEventOptions } from "../@Types/index";
 
-const DEFAULT_LEAVE_MESSAGE = "{username} has left {server}.";
+const DEFAULT_LEAVE_MESSAGE = "{username} has left {server}";
 
 export async function leaveImage(
   userId: string,

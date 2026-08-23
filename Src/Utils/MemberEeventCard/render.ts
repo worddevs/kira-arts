@@ -139,7 +139,7 @@ export async function drawMemberEventCard(
     cursorY += 30 * fontScale;
     ctx.font = withFallback(`bold ${Math.round(16 * fontScale)}px Helvetica Bold`);
     ctx.fillStyle = hexToRgba(layout.accentColor, 1);
-    ctx.fillText(`Miembro #${layout.memberCount}`, width / 2, cursorY);
+    ctx.fillText(`Member #${layout.memberCount}`, width / 2, cursorY);
   }
 
   if (layout.dateText) {

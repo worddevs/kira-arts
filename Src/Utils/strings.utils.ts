@@ -100,7 +100,7 @@ export function getDateOrString(
 export function formatGiveawayEndText(
   endsAt: Date | string,
   from: number = Date.now(),
-  localDateType: string = "es",
+  localDateType: string = "en",
 ): string {
   const target = endsAt instanceof Date ? endsAt : new Date(endsAt);
   const diffMs = target.getTime() - from;

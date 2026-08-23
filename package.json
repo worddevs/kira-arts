@@ -1,6 +1,6 @@
 {
   "name": "kira-arts",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "TypeScript library to generate Discord-style profile, welcome and achievement cards",
   "keywords": [
     "discord",
@@ -49,27 +49,25 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build",
-    "prepack": "node Scripts/swap-readme.mjs before",
-    "postpack": "node Scripts/swap-readme.mjs after",
-    "verify": "npm run format && npm run lint && npm run build && npm run test"
+    "verify": "npm run format && npm run lint && npm run build && npm run test && npm run test:coverage"
   },
   "peerDependencies": {
     "discord.js": "^14.27.0"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^1.0.2"
+    "@napi-rs/canvas": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.11",
     "copyfiles": "^2.4.1",
     "discord.js": "^14.27.0",
-    "eslint": "^10.8.0",
+    "eslint": "^10.9.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.65.0",
-    "vitest": "^4.1.10"
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.11"
   }
 }

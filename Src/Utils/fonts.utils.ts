@@ -26,9 +26,7 @@ export function ensureFontsRegistered(): void {
     try {
       GlobalFonts.registerFromPath(`${fontsDir}/${file}`, family);
     } catch {
-      // Si una fuente fallback no está disponible en el sistema, la ignoramos
-      // intencionalmente: withFallback() ya incluye una cadena de fuentes
-      // alternativas, así que perder una no rompe el renderizado.
+      // return null;
     }
   }
 

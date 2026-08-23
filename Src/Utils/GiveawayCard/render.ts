@@ -122,7 +122,7 @@ export async function drawGiveawayCard(
   ctx.textAlign = "left";
   ctx.textBaseline = "middle";
   ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-  ctx.fillText("SORTEO", PADDING + 32, cursorY + 12);
+  ctx.fillText("GIVEAWAY", PADDING + 32, cursorY + 12);
 
   drawStatusPill(ctx, width - PADDING, cursorY, layout.status !== "ended", statusColor);
 
@@ -169,7 +169,7 @@ export async function drawGiveawayCard(
   const trophyGap = 12;
   const maxRowWidth = width - PADDING * 2;
 
-  const winnersLabel = `${layout.winnersCount} ${layout.winnersCount === 1 ? "ganador" : "ganadores"}`;
+  const winnersLabel = `${layout.winnersCount} ${layout.winnersCount === 1 ? "winner" : "winners"}`;
   ctx.font = withFallback("15px Helvetica");
   const winnersLabelWidth = ctx.measureText(winnersLabel).width;
 
@@ -179,7 +179,7 @@ export async function drawGiveawayCard(
 
   ctx.font = withFallback("15px Helvetica");
   const hostText = layout.hostName
-    ? truncateTextToWidth(ctx, `Organiza ${layout.hostName}`, hostMaxWidth)
+    ? truncateTextToWidth(ctx, `Hosted by ${layout.hostName}`, hostMaxWidth)
     : "";
   const hostTextWidth = layout.hostName ? ctx.measureText(hostText).width : 0;
 
@@ -235,7 +235,7 @@ export async function drawGiveawayCard(
 
     const participantsText =
       layout.participantsCount !== undefined
-        ? `${layout.participantsCount} ${layout.participantsCount === 1 ? "participante" : "participantes"}`
+        ? `${layout.participantsCount} ${layout.participantsCount === 1 ? "participant" : "participants"}`
         : undefined;
     const separator = "  •  ";
     const separatorWidth = participantsText ? ctx.measureText(separator).width : 0;
@@ -267,7 +267,7 @@ export async function drawGiveawayCard(
 
   if (hasWinners) {
     const shown = winners.slice(0, MAX_WINNERS_SHOWN);
-    const remaining = winners.length - shown.length;
+    const remaining = layout.winnersCount - shown.length;
     const slotWidth = 92;
     const rowWidth = shown.length * slotWidth;
     const startX = width / 2 - rowWidth / 2 + slotWidth / 2;
@@ -287,7 +287,7 @@ export async function drawGiveawayCard(
     if (remaining > 0) {
       ctx.font = withFallback("13px Helvetica");
       ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
-      ctx.fillText(`+${remaining} más`, width / 2, height - PADDING + 4);
+      ctx.fillText(`+${remaining} more`, width / 2, height - PADDING + 4);
     }
   }
 

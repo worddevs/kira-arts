@@ -3,4 +3,5 @@ Dist
 dist
 coverage
 *.md
+!README.md
 Src/Public

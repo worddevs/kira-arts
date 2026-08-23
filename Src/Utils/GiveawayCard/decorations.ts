@@ -194,7 +194,7 @@ export function drawStatusPill(
   active: boolean,
   color: string,
 ): number {
-  const text = active ? "ACTIVO" : "FINALIZADO";
+  const text = active ? "ACTIVE" : "ENDED";
 
   ctx.save();
   ctx.font = withFallback("bold 12px Helvetica Bold");
