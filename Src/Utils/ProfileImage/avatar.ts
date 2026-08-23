@@ -32,7 +32,24 @@ export async function genAvatarFrame(data: KiraUserData, options: ProfileOptions
   const frameUrl = data?.decoration?.avatarFrame;
 
   const avatarFrame = await loadImage(frameUrl!);
-  ctx.drawImage(avatarFrame, 25, 18, 269, 269);
+
+  if (options?.squareAvatar) {
+    // Discord's avatar decorations are drawn as circular assets slightly
+    // larger than the avatar itself (269px vs 225px) so they overhang the
+    // edges. When squareAvatar is on, clip that overhang to a rounded
+    // square (radius scaled to the same proportion as the avatar's own
+    // clip) so the frame reads as "square" too instead of a circle sitting
+    // on top of a squared photo.
+    const roundValue = 30 * (269 / 225);
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(25, 18, 269, 269, [roundValue]);
+    ctx.clip();
+    ctx.drawImage(avatarFrame, 25, 18, 269, 269);
+    ctx.restore();
+  } else {
+    ctx.drawImage(avatarFrame, 25, 18, 269, 269);
+  }
 
   if (options?.presenceStatus) {
     canvas = await cutAvatarStatus(canvas, options);

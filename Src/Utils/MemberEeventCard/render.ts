@@ -8,7 +8,7 @@ import type { MemberEventLayout } from "../../@Types/index";
 import { CORNER_RADIUS, BANNER_HEIGHT, BASE_AVATAR_SIZE, AVATAR_BORDER } from "./constants";
 import { normalizeFontScale, computeAvatarSize } from "./dimensions";
 import { applyTextEffect } from "./textEffects";
-import { drawServerTagPill, drawBadgesPill } from "./pills";
+import { drawServerTagPill, drawBadgesPill, drawEventKindPill } from "./pills";
 
 export async function drawMemberEventCard(
   ctx: SKRSContext2D,
@@ -41,18 +41,36 @@ export async function drawMemberEventCard(
     drawCoverImage(ctx, bannerImage, 0, 0, width, height);
 
     const overlay = ctx.createLinearGradient(0, 0, 0, height);
-    overlay.addColorStop(0, "rgba(8, 9, 12, 0.1)");
-    overlay.addColorStop(0.3, "rgba(8, 9, 12, 0.3)");
-    overlay.addColorStop(0.55, "rgba(13, 15, 20, 0.55)");
-    overlay.addColorStop(1, "rgba(13, 15, 20, 0.9)");
+    overlay.addColorStop(0, "rgba(8, 9, 12, 0.15)");
+    overlay.addColorStop(0.3, "rgba(8, 9, 12, 0.35)");
+    overlay.addColorStop(0.55, "rgba(13, 15, 20, 0.6)");
+    overlay.addColorStop(1, "rgba(13, 15, 20, 0.92)");
     ctx.fillStyle = overlay;
     ctx.fillRect(0, 0, width, height);
   } else {
-    const grd = ctx.createLinearGradient(0, 0, width, BANNER_HEIGHT);
-    grd.addColorStop(0, hexToRgba(layout.accentColor, 0.85));
-    grd.addColorStop(1, hexToRgba(layout.accentColor, 0.3));
+    const grd = ctx.createLinearGradient(0, 0, width, BANNER_HEIGHT * 1.4);
+    grd.addColorStop(0, hexToRgba(layout.accentColor, 0.95));
+    grd.addColorStop(0.55, hexToRgba(layout.accentColor, 0.55));
+    grd.addColorStop(1, hexToRgba(layout.accentColor, 0.18));
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, width, BANNER_HEIGHT);
+  }
+
+  const spotlight = ctx.createRadialGradient(
+    width / 2,
+    BANNER_HEIGHT,
+    0,
+    width / 2,
+    BANNER_HEIGHT,
+    BANNER_HEIGHT * 1.15,
+  );
+  spotlight.addColorStop(0, hexToRgba(layout.accentColor, 0.35));
+  spotlight.addColorStop(1, hexToRgba(layout.accentColor, 0));
+  ctx.fillStyle = spotlight;
+  ctx.fillRect(0, 0, width, height);
+
+  if (layout.kindLabel) {
+    drawEventKindPill(ctx, width, layout.kind, layout.kindLabel);
   }
 
   if (layout.serverTag) {
@@ -123,6 +141,14 @@ export async function drawMemberEventCard(
   ctx.fillStyle = layout.usernameColor ? parseHex(layout.usernameColor) : "#FFFFFF";
   ctx.fillText(truncateText(username, 24), width / 2, cursorY);
 
+  applyTextEffect(ctx, "none", glowColor);
+  const dividerY = cursorY + 14 * fontScale;
+  const dividerWidth = 36 * fontScale;
+  ctx.beginPath();
+  ctx.roundRect(width / 2 - dividerWidth / 2, dividerY, dividerWidth, 3, [2]);
+  ctx.fillStyle = hexToRgba(layout.accentColor, 0.9);
+  ctx.fill();
+
   if (layout.message) {
     cursorY += 32 * fontScale;
     applyTextEffect(ctx, layout.messageEffect, glowColor);
@@ -135,11 +161,11 @@ export async function drawMemberEventCard(
 
   applyTextEffect(ctx, "none", glowColor);
 
-  if (layout.memberCount != null) {
+  if (layout.memberCount != null && layout.memberCountText) {
     cursorY += 30 * fontScale;
     ctx.font = withFallback(`bold ${Math.round(16 * fontScale)}px Helvetica Bold`);
     ctx.fillStyle = hexToRgba(layout.accentColor, 1);
-    ctx.fillText(`Member #${layout.memberCount}`, width / 2, cursorY);
+    ctx.fillText(layout.memberCountText, width / 2, cursorY);
   }
 
   if (layout.dateText) {

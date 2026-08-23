@@ -8,5 +8,5 @@ export async function welcomeImage(
   guildName: string,
   options: MemberEventOptions = {},
 ): Promise<Buffer> {
-  return renderMemberEventCard(userId, guildName, DEFAULT_WELCOME_MESSAGE, options);
+  return renderMemberEventCard(userId, guildName, DEFAULT_WELCOME_MESSAGE, options, "welcome");
 }

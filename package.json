@@ -11,7 +11,7 @@
     "image-generation",
     "typescript"
   ],
-  "homepage": "https://kira-arts.chocofactory.dev/",
+  "homepage": "https://github.com/worddevs/kira-arts#readme",
   "bugs": {
     "url": "https://github.com/worddevs/kira-arts/issues"
   },
@@ -19,12 +19,14 @@
     "type": "git",
     "url": "git+https://github.com/worddevs/kira-arts.git"
   },
-  "funding": "https://github.com/worddevs/kira-arts?sponsor",
-  "license": "Apache-2.0",
-  "contributors": [
-    "𝒞𝒽𝑜𝒸𝑜",
-    "NotAvalible111"
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/worddevs"
+    }
   ],
+  "license": "Apache-2.0",
+  "author": "worddevs",
   "type": "module",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",

@@ -3,7 +3,10 @@ import { fetchUserData } from "../Utils/fetch.utils";
 import { genAchievementPng } from "../Utils/achievementCard.output.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import { type AchievementOptions, type AchievementLayout, KiraErrorCode } from "../@Types/index";
+import type { AchievementOptions, AchievementLayout } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
+
+export type { AchievementOptions } from "../@Types/index";
 
 export async function achievementImage(
   userId: string,

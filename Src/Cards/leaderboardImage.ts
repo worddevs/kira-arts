@@ -4,12 +4,12 @@ import { genLeaderboardPng } from "../Utils/leaderboardImage.output.utils";
 import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import { DEFAULT_ACCENT } from "../Utils/LeaderboardImage/index";
-import {
-  type LeaderboardEntry,
-  type LeaderboardOptions,
-  type ResolvedLeaderboardEntry,
-  KiraErrorCode,
+import type {
+  LeaderboardEntry,
+  LeaderboardOptions,
+  ResolvedLeaderboardEntry,
 } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
 
 const DEFAULT_MAX_ENTRIES = 5;
 const HARD_MAX_ENTRIES = 15;

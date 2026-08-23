@@ -127,8 +127,11 @@ export interface ShipLayout {
 export type TextEffect = "none" | "shadow" | "glow";
 
 export interface MemberEventLayout {
+  kind: "welcome" | "leave";
+  kindLabel: string;
   message?: string;
   memberCount?: number;
+  memberCountText?: string;
   dateText?: string;
   accentColor: string;
   borderColors: string[];

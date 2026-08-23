@@ -8,5 +8,5 @@ export async function leaveImage(
   guildName: string,
   options: MemberEventOptions = {},
 ): Promise<Buffer> {
-  return renderMemberEventCard(userId, guildName, DEFAULT_LEAVE_MESSAGE, options);
+  return renderMemberEventCard(userId, guildName, DEFAULT_LEAVE_MESSAGE, options, "leave");
 }

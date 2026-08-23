@@ -6,7 +6,10 @@ import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import type { ShipLayout } from "../Utils/ShipCard/index";
 import { computeCompatibility, pickShipMessage } from "../Utils/ShipCard/index";
-import { type ShipOptions, KiraErrorCode } from "../@Types/index";
+import type { ShipOptions } from "../@Types/index";
+import { KiraErrorCode } from "../@Types/index";
+
+export type { ShipOptions } from "../@Types/index";
 
 async function resolveAvatarUrl(
   userId: string,
