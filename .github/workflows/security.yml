@@ -11,6 +11,16 @@ permissions:
   security-events: write
 
 jobs:
+  socket:
+    name: Socket Security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: SocketDev/action@v1
+        with:
+          mode: firewall-free
+      - run: sfw npm ci
+
   audit:
     name: npm audit
     runs-on: ubuntu-latest
@@ -20,7 +30,7 @@ jobs:
         with:
           node-version: 24
       - run: npm ci
-      - run: npm audit --omit=dev --audit-level=high
+      - run: npm audit --omit=dev
 
   codeql:
     name: CodeQL
