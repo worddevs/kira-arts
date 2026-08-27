@@ -1,21 +1,21 @@
-export {
+export { KiraErrorCode } from "./common";
+export type {
   PresenceStatus,
   BorderAlign,
   OutputFormat,
   OutputOptions,
-  KiraErrorCode,
   ColorValue,
   ColorInput,
   KiraCacheOptions,
 } from "./common";
-export {
+export type {
   KiraThemeName,
   KiraThemePalette,
   KiraNameplatePalette,
   ColorResolutionSources,
   CanvasBadge,
 } from "./theme";
-export {
+export type {
   KiraBadge,
   KiraNameplate,
   KiraServerTag,
@@ -35,7 +35,7 @@ export {
   CatalogEntry,
   RawProfileBadge,
 } from "./user";
-export {
+export type {
   RankOptions,
   MemberEventOptions,
   LevelUpOptions,
@@ -57,7 +57,7 @@ export {
   GiveawayOptions,
   GiveawayLayout,
 } from "./options";
-export {
+export type {
   MoonlinkTrackLike,
   LavalinkTrackLike,
   DiscordPlayerTrackLike,

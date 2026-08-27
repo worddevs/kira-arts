@@ -1,5 +1,6 @@
 import { GlobalFonts } from "@napi-rs/canvas";
 import path from "path";
+import { fileURLToPath } from "url";
 
 let initialized = false;
 
@@ -7,7 +8,8 @@ export function ensureFontsRegistered(): void {
   if (initialized) return;
   initialized = true;
 
-  const fontsDir = path.join(__dirname, "Public", "Fonts");
+  const currentDir = path.dirname(fileURLToPath(import.meta.url));
+  const fontsDir = path.join(currentDir, "Public", "Fonts");
 
   GlobalFonts.registerFromPath(`${fontsDir}/HelveticaBold.ttf`, "Helvetica Bold");
   GlobalFonts.registerFromPath(`${fontsDir}/Helvetica.ttf`, "Helvetica");

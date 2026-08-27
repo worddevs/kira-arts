@@ -1,6 +1,6 @@
 # kira-arts 💞
 
-A TypeScript library for generating Discord-style visual cards — profiles, welcome/leave events, level-ups, achievements, leaderboards, compatibility "ship" cards, and now-playing music cards — all powered by `@napi-rs/canvas`.
+A TypeScript library for generating Discord-style visual cards — profiles, welcome/leave events, level-ups, achievements, leaderboards, compatibility "ship" cards, now-playing music cards, and giveaways — rendered natively for speed and zero runtime dependencies on a browser or headless Chromium.
 
 **📚 Full documentation, live examples, and a Playground: [documentation](https://guide.worddevs.dev/docs/kira-arts)**
 
@@ -9,13 +9,12 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 [![install size](https://packagephobia.com/badge?p=kira-arts)](https://packagephobia.com/result?p=kira-arts)
 [![license](https://img.shields.io/npm/l/kira-arts.svg)](./LICENSE)
 [![node](https://img.shields.io/node/v/kira-arts.svg)](https://www.npmjs.com/package/kira-arts)
-[![types](https://img.shields.io/npm/types/kira-arts.svg)](./dist/index.d.ts)
+[![types](https://img.shields.io/npm/types/kira-arts.svg)](./dist/index.d.cts)
 [![TypeScript](https://img.shields.io/badge/built_with-TypeScript-3178c6.svg)](https://www.typescriptlang.org/)
 [![tests](https://github.com/worddevs/kira-arts/actions/workflows/tests.yml/badge.svg)](https://github.com/worddevs/kira-arts/actions/workflows/tests.yml)
 [![release](https://github.com/worddevs/kira-arts/actions/workflows/release.yml/badge.svg)](https://github.com/worddevs/kira-arts/actions/workflows/release.yml)
 [![GitHub stars](https://img.shields.io/github/stars/worddevs/kira-arts.svg?style=flat)](https://github.com/worddevs/kira-arts/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/worddevs/kira-arts.svg?style=flat)](https://github.com/worddevs/kira-arts/network/members)
-[![contributors](https://img.shields.io/badge/contributors-2-orange)](https://github.com/worddevs/kira-arts/graphs/contributors)
+[![commit activity](https://img.shields.io/github/commit-activity/m/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/commits/main)
 [![last commit](https://img.shields.io/github/last-commit/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/commits/main)
 [![open issues](https://img.shields.io/github/issues/worddevs/kira-arts.svg)](https://github.com/worddevs/kira-arts/issues)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -23,10 +22,13 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 
 ## ✨ Features
 
-- 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), and Now Playing cards
-- 🎵 Now Playing card ships with adapters for moonlink.js, Lavalink-based clients, discord-player, and distube
-- 🎨 8 built-in themes, Nitro/role-color aware borders, and up to 4-color custom gradients
-- 🧾 Output as `png`, `jpeg`, or `webp`, ready to use as a discord.js `AttachmentBuilder`
+- 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, and Giveaway cards
+- 🎵 Now Playing card ships with adapters for moonlink.js, Lavalink-based clients (erela.js, Shoukaku, Kazagumo, Riffy, Magmastream, lavalink-client), discord-player, and distube
+- 🎨 8 built-in themes (`discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`, `monochrome`, `gold`), Nitro/role-color aware borders, and up to 4-color custom gradients
+- 🧾 Output as `png`, `jpeg`, or `webp`, ready to use as a discord.js `AttachmentBuilder` via `toAttachment()`
+- ⚡ Built-in, configurable in-memory cache for fetched user data (`setCacheOptions`, `clearCache`, `getCacheSize`)
+- 🛡️ Typed error handling with `KiraError` and `KiraErrorCode`, instead of opaque runtime failures
+- 📦 Dual package: ESM and CommonJS builds, both with full type declarations, no extra config needed
 
 ## 📦 Installation
 
@@ -45,26 +47,29 @@ bun add kira-arts
 import { Client, GatewayIntentBits } from "discord.js";
 import { setClient, profileImage, toAttachment } from "kira-arts";
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
 
 client.once("clientReady", () => {
   setClient(client); // 👈 required before generating any card
 });
 
-client.on("interactionCreate", async (interaction) => {
-  if (interaction.isChatInputCommand()) return;
+client.on("messageCreate", async (message) => {
+  if (message.author.bot || message.content !== "!card") return;
 
-  if (interaction.commandName === "card") {
-    const buffer = await profileImage(interaction.user.id, {
-      guildId: interaction.guild?.id,
-      useRoleColor: true,
-      presenceStatus: interaction.member?.presence?.status,
-      customBadges: extraBadges.length ? extraBadges : undefined,
-      badgesFrame: true,
-    });
+  const buffer = await profileImage(message.author.id, {
+    guildId: message.guild?.id,
+    useRoleColor: true,
+    presenceStatus: message.member?.presence?.status,
+    badgesFrame: true,
+  });
 
-    await interaction.reply({ files: [toAttachment(buffer, "profile", "png")] });
-  }
+  await message.reply({ files: [toAttachment(buffer, "profile", "png")] });
 });
 
 client.login(process.env.TOKEN);
@@ -74,23 +79,39 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 
 ## 🃏 Cards at a glance
 
-| Card            | Function                          | What it's for                               |
-| --------------- | --------------------------------- | ------------------------------------------- |
-| Profile         | `profileImage()`                  | Avatar, badges, nameplate, server tag, rank |
-| Welcome / Leave | `welcomeImage()` / `leaveImage()` | Member join/leave events                    |
-| Level Up        | `levelUpImage()`                  | XP progress bar on level-up                 |
-| Achievement     | `achievementImage()`              | Unlockable achievements with rarity tiers   |
-| Leaderboard     | `leaderboardImage()`              | Server ranking table                        |
-| Ship            | `shipImage()`                     | Compatibility between two users             |
-| Now Playing     | `nowPlayingImage()`               | Music player card with source detection     |
+| Card        | Function                                      | What it's for                               |
+| ----------- | --------------------------------------------- | ------------------------------------------- |
+| Profile     | `profileImage(userId, options)`               | Avatar, badges, nameplate, server tag, rank |
+| Welcome     | `welcomeImage(userId, guildName, options)`    | Member join events                          |
+| Leave       | `leaveImage(userId, guildName, options)`      | Member leave events                         |
+| Level Up    | `levelUpImage(userId, level, options)`        | XP progress bar on level-up                 |
+| Achievement | `achievementImage(userId, title, options)`    | Unlockable achievements with rarity tiers   |
+| Leaderboard | `leaderboardImage(entries, options)`          | Server ranking table                        |
+| Ship        | `shipImage(leftUserId, rightUserId, options)` | Compatibility between two users             |
+| Now Playing | `nowPlayingImage(track, options)`             | Music player card with source detection     |
+| Giveaway    | `giveawayImage(prize, options)`               | Prize, host, entry count, winners on end    |
 
-## 🤝 Contributors
+## 🛠️ Utilities
 
-Kira-Arts is developed and maintained by the WordDevs community.
+| Function                                        | What it's for                                                          |
+| ----------------------------------------------- | ---------------------------------------------------------------------- |
+| `setClient(client)`                             | Registers your discord.js client — required before generating any card |
+| `toAttachment(buffer, name, format)`            | Wraps a card buffer into a discord.js `AttachmentBuilder`              |
+| `encodeCanvas(canvas, options)`                 | Encodes a raw canvas to `png` / `jpeg` / `webp`                        |
+| `extensionForFormat(format)`                    | Returns the file extension for an `OutputFormat`                       |
+| `setCacheOptions(options)`                      | Configures the internal user-data cache (enable, TTL)                  |
+| `clearCache()`                                  | Clears the internal user-data cache                                    |
+| `getCacheSize()`                                | Returns the number of entries currently cached                         |
+| `computeCompatibility(leftUserId, rightUserId)` | Deterministic compatibility percentage for the Ship card               |
+| `pickShipMessage(percentage)`                   | Flavor text matching a compatibility percentage                        |
+| `getThemePalette(theme)`                        | Resolves a `KiraThemeName` to its full color palette                   |
+| `fromMoonlinkTrack(track)`                      | Adapter: moonlink.js track → `NowPlayingTrack`                         |
+| `fromLavalinkTrack(track)`                      | Adapter: Lavalink-based clients → `NowPlayingTrack`                    |
+| `fromDiscordPlayerTrack(track)`                 | Adapter: discord-player track → `NowPlayingTrack`                      |
+| `fromDistubeTrack(song)`                        | Adapter: distube song → `NowPlayingTrack`                              |
+| `extractRequesterId(track)`                     | Pulls the requester's user ID out of any supported track               |
 
-<a href="https://github.com/worddevs/kira-arts/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=worddevs/kira-arts" alt="Contributors" />
-</a>
+> `THEMES` (all 8 built-in palettes), `KiraError` / `KiraErrorCode`, and lower-level canvas/validation helpers (`loadImageSafe`, `hexToRgb`, `hexToRgba`, `drawGradientBorder`, `drawCoverImage`, `parseHex`, `decimalToHex`, `parseImg`, `parsePng`, `isString`, `isNumber`) are also exported for advanced use — see the [documentation](https://guide.worddevs.dev/docs/kira-arts) for details.
 
 ## 📄 License
 
@@ -113,5 +134,5 @@ Copyright © [worddevs](https://github.com/worddevs)
 </p>
 
 <p align="center">
-  <sub>Built with TypeScript and powered by <code>@napi-rs/canvas</code>.</sub>
+  <sub>Built with TypeScript, designed for performance.</sub>
 </p>

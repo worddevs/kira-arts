@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-08-27
+
+### Fixed
+- Migrated the build from `tsup` (unmaintained, no longer receiving updates)
+  to `tsdown`. Several barrel re-exports in `Src/@Types/index.ts` and
+  `Src/Utils/ShipCard/index.ts` re-exported `type`/`interface` declarations
+  as if they were values (e.g. `export { ShipLayout } from ...` instead of
+  `export type { ShipLayout } from ...`). `tsup`/esbuild tolerated this
+  silently, but `tsdown`'s rolldown-based bundler does not, causing the
+  build to fail with `MISSING_EXPORT` errors. All type-only re-exports now
+  correctly use the `type` modifier.
+- `Src/Utils/fonts.utils.ts` used `__dirname`, which does not exist in ESM
+  and crashed the ESM build (`dist/index.mjs`) at runtime with
+  `ReferenceError: __dirname is not defined` the first time any card
+  attempted to register fonts. Replaced with
+  `path.dirname(fileURLToPath(import.meta.url))`, which resolves correctly
+  in both the ESM and CommonJS builds.
+- `package.json`'s `main`, `module`, `types`, and `exports` pointed to
+  `dist/index.js` / `dist/index.d.ts`, files that `tsdown` never generates
+  (it outputs `index.mjs` / `index.cjs` / `index.d.mts` / `index.d.cts`).
+  Consumers resolving the package would have failed to find the entry point
+  or its types. Updated to point to the real build output, with separate
+  `types` per condition in `exports`.
+
+### Removed
+- `Scripts/swap-readme.mjs` and its `prepack`/`postpack` lifecycle hooks have
+  been removed for good. npm currently publishes the full `README.md` as-is;
+  a proper npm/GitHub README split is tracked separately for a future
+  release.
+
 ## [1.3.1] - 2026-08-23
 
 ### Fixed
