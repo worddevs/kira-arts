@@ -1,5 +1,6 @@
 import type { KiraNameplatePalette } from "./theme";
-import type { LeaderboardEntry } from "./options";
+import type { LeaderboardEntry, MemberEventLayoutStyle, MemberEventSize } from "./options";
+import type { KiraFontFamily } from "./common";
 
 export interface KiraBadge {
   name: string;
@@ -119,10 +120,20 @@ export interface ShipLayout {
 
 export type TextEffect = "none" | "shadow" | "glow";
 
+export interface BannerLine {
+  text: string;
+  size: number;
+  gapBefore: number;
+  bold: boolean;
+  color: string;
+  effect?: TextEffect;
+}
+
 export interface MemberEventLayout {
   kind: "welcome" | "leave";
   kindLabel: string;
   message?: string;
+  secondaryMessage?: string;
   memberCount?: number;
   memberCountText?: string;
   dateText?: string;
@@ -130,8 +141,15 @@ export interface MemberEventLayout {
   borderColors: string[];
   usernameColor?: string;
   messageColor?: string;
+  secondaryMessageColor?: string;
+  fontFamily?: KiraFontFamily;
   customBackground?: string;
   fontScale?: number;
+  layoutStyle?: MemberEventLayoutStyle;
+  size?: MemberEventSize;
+  animated?: boolean;
+  confetti?: boolean;
+  gifSeconds?: number;
   avatarFrameUrl?: string | null;
   avatarBorderColor?: string;
   serverTag?: KiraServerTag | null;

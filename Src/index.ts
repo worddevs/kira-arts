@@ -17,6 +17,7 @@ export {
 } from "./Adapters/index";
 export { setClient } from "./client";
 export { setCacheOptions, clearCache, getCacheSize } from "./Utils/cache.utils";
+export { setWatermark } from "./Utils/watermark.utils";
 export { KiraError } from "./Utils/error.utils";
 export { KiraErrorCode } from "./@Types/index";
 export { toAttachment } from "./Utils/attachment.utils";
@@ -92,4 +93,8 @@ export type {
   GiveawayLayout,
   GiveawayStatus,
   GiveawayWinner,
+  KiraFontFamily,
+  KiraWatermarkOptions,
+  WatermarkPosition,
+  AttachmentOptions,
 } from "./@Types/index";

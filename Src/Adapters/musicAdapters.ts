@@ -1,6 +1,6 @@
 import { parseDurationString } from "../Utils/strings.utils";
-import type { NowPlayingTrack } from "../@Types/index";
 import type {
+  NowPlayingTrack,
   MoonlinkTrackLike,
   LavalinkTrackLike,
   DiscordPlayerTrackLike,

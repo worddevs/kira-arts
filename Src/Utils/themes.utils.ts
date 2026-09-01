@@ -1,6 +1,5 @@
 import { KiraError } from "./error.utils";
-import type { KiraThemeName, KiraThemePalette } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type KiraThemeName, type KiraThemePalette, KiraErrorCode } from "../@Types/index";
 
 export const THEMES: Record<KiraThemeName, KiraThemePalette> = {
   discord: {

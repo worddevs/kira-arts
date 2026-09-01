@@ -1,10 +1,29 @@
 import { createCanvas } from "@napi-rs/canvas";
 
-import type { MemberEventLayout } from "../../@Types/index";
-import { CARD_WIDTH, BANNER_HEIGHT, BASE_AVATAR_SIZE } from "./constants";
+import type { MemberEventLayout, MemberEventSize } from "../../@Types/index";
+import {
+  BANNER_HEIGHT,
+  BASE_AVATAR_SIZE,
+  CENTERED_WIDTH_PRESET,
+  CENTERED_FONT_SCALE,
+  BANNER_DIMENSIONS,
+  BANNER_SIZE_SCALE,
+} from "./constants";
 
 export function normalizeFontScale(fontScale?: number): number {
   return fontScale && fontScale > 0 ? fontScale : 1;
+}
+
+export function normalizeSize(size?: MemberEventSize): MemberEventSize {
+  return size === "compact" || size === "wide" ? size : "standard";
+}
+
+export function computeEffectiveFontScale(layout: MemberEventLayout): number {
+  const fontScale = normalizeFontScale(layout.fontScale);
+  const size = normalizeSize(layout.size);
+  const sizeScale =
+    layout.layoutStyle === "banner" ? BANNER_SIZE_SCALE[size] : CENTERED_FONT_SCALE[size];
+  return fontScale * sizeScale;
 }
 
 export function computeAvatarSize(fontScale: number): number {
@@ -14,35 +33,42 @@ export function computeAvatarSize(fontScale: number): number {
 
 export function computeBodyHeight(
   hasMessage: boolean,
+  hasSecondaryMessage: boolean,
   hasMemberCount: boolean,
   hasDate: boolean,
   fontScale: number,
 ): number {
-  let h = 40 * fontScale;
-  h += 38 * fontScale;
-  if (hasMessage) h += 30 * fontScale;
-  if (hasMemberCount) h += 28 * fontScale;
-  if (hasDate) h += 24 * fontScale;
-  h += 28;
+  let h = 48 * fontScale;
+  if (hasMessage) h += 34 * fontScale;
+  if (hasSecondaryMessage) h += 28 * fontScale;
+  if (hasMemberCount) h += 32 * fontScale;
+  if (hasDate) h += 28 * fontScale;
+  h += 30;
   return h;
 }
 
 export function getCardDimensions(layout: MemberEventLayout): { width: number; height: number } {
+  if (layout.layoutStyle === "banner") {
+    const preset = BANNER_DIMENSIONS[normalizeSize(layout.size)];
+    return { width: preset.width, height: preset.height };
+  }
+
   const hasMessage = Boolean(layout.message);
+  const hasSecondaryMessage = Boolean(layout.secondaryMessage);
   const hasMemberCount = layout.memberCount != null;
   const hasDate = Boolean(layout.dateText);
 
-  const fontScale = normalizeFontScale(layout.fontScale);
+  const fontScale = computeEffectiveFontScale(layout);
   const avatarSize = computeAvatarSize(fontScale);
-  const bodyHeight = computeBodyHeight(hasMessage, hasMemberCount, hasDate, fontScale);
+  const bodyHeight = computeBodyHeight(
+    hasMessage,
+    hasSecondaryMessage,
+    hasMemberCount,
+    hasDate,
+    fontScale,
+  );
   const height = Math.round(BANNER_HEIGHT + avatarSize / 2 + bodyHeight);
-
-  const baseAvatarSize = computeAvatarSize(1);
-  const baseBodyHeight = computeBodyHeight(hasMessage, hasMemberCount, hasDate, 1);
-  const baseHeight = BANNER_HEIGHT + baseAvatarSize / 2 + baseBodyHeight;
-
-  const aspectRatio = CARD_WIDTH / baseHeight;
-  const width = Math.round(height * aspectRatio);
+  const width = CENTERED_WIDTH_PRESET[normalizeSize(layout.size)];
 
   return { width, height };
 }

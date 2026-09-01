@@ -1,13 +1,12 @@
 import "./profileImage.output.utils";
 
-import type { NowPlayingLayout } from "../@Types/index";
+import type { NowPlayingLayout, OutputOptions } from "../@Types/index";
 import {
   createNowPlayingCanvas,
   drawNowPlayingCard,
   getCardDimensions,
 } from "./NowPlayingCard/index";
 import { encodeCanvas } from "./output.utils";
-import type { OutputOptions } from "../@Types/index";
 
 export async function genNowPlayingPng(
   layout: NowPlayingLayout,

@@ -5,8 +5,7 @@ import { KiraError } from "./error.utils";
 import { getBadgesFromFlags, getGuildMemberInfo } from "./badges.utils";
 import { getClient } from "../client";
 import { buildCacheKey, getCached, setCached } from "./cache.utils";
-import type { KiraUserData, RawUserProfileResponse } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type KiraUserData, type RawUserProfileResponse, KiraErrorCode } from "../@Types/index";
 import { decimalToHex } from "./validations.utils";
 import { loadImageSafe } from "./canvasShared.utils";
 
@@ -185,7 +184,11 @@ export async function fetchUserData(
         createdTimestamp: user.createdTimestamp,
       },
       assets: {
-        avatarURL: user.avatarURL({ size: 512, extension: "png", forceStatic: true }),
+        avatarURL: user.avatarURL({
+          size: 512,
+          extension: user.avatar?.startsWith("a_") ? "gif" : "png",
+          forceStatic: false,
+        }),
         defaultAvatarURL: user.defaultAvatarURL,
         bannerURL: user.bannerURL({ size: 512 }) ?? null,
         badges,

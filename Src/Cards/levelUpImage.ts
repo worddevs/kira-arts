@@ -8,8 +8,6 @@ import type { LevelUpLayout } from "../Utils/LevelUpCard/index";
 import type { LevelUpOptions } from "../@Types/index";
 import { KiraErrorCode } from "../@Types/index";
 
-export type { LevelUpOptions } from "../@Types/index";
-
 const DEFAULT_ACCENT = "#FACC15";
 
 export async function levelUpImage(

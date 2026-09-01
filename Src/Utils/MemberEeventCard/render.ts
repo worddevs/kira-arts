@@ -3,12 +3,13 @@ import { type SKRSContext2D, loadImage } from "@napi-rs/canvas";
 import { drawCoverImage, drawGradientBorder, hexToRgba } from "../canvasShared.utils";
 import { parseHex } from "../validations.utils";
 import { truncateText } from "../strings.utils";
-import { withFallback } from "../fonts.utils";
-import type { MemberEventLayout } from "../../@Types/index";
+import { resolveFont } from "../fonts.utils";
+import type { MemberEventLayout, MemberEventDrawOverrides } from "../../@Types/index";
 import { CORNER_RADIUS, BANNER_HEIGHT, BASE_AVATAR_SIZE, AVATAR_BORDER } from "./constants";
-import { normalizeFontScale, computeAvatarSize } from "./dimensions";
+import { computeEffectiveFontScale, computeAvatarSize } from "./dimensions";
 import { applyTextEffect } from "./textEffects";
 import { drawServerTagPill, drawBadgesPill, drawEventKindPill } from "./pills";
+import { drawBannerMemberEventCard } from "./renderBanner";
 
 export async function drawMemberEventCard(
   ctx: SKRSContext2D,
@@ -17,8 +18,14 @@ export async function drawMemberEventCard(
   avatarUrl: string,
   username: string,
   layout: MemberEventLayout,
+  overrides?: MemberEventDrawOverrides,
 ): Promise<void> {
-  const fontScale = normalizeFontScale(layout.fontScale);
+  if (layout.layoutStyle === "banner") {
+    await drawBannerMemberEventCard(ctx, width, height, avatarUrl, username, layout, overrides);
+    return;
+  }
+
+  const fontScale = computeEffectiveFontScale(layout);
   const avatarSize = computeAvatarSize(fontScale);
   const avatarBorder = Math.max(4, Math.round(AVATAR_BORDER * (avatarSize / BASE_AVATAR_SIZE)));
   const avatarBorderColor = layout.avatarBorderColor
@@ -33,9 +40,11 @@ export async function drawMemberEventCard(
   ctx.fillStyle = "#111318";
   ctx.fillRect(0, 0, width, height);
 
-  const bannerImage = layout.customBackground
-    ? await loadImage(layout.customBackground).catch(() => undefined)
-    : undefined;
+  const bannerImage =
+    overrides?.backgroundImage ??
+    (layout.customBackground
+      ? await loadImage(layout.customBackground).catch(() => undefined)
+      : undefined);
 
   if (bannerImage) {
     drawCoverImage(ctx, bannerImage, 0, 0, width, height);
@@ -101,7 +110,7 @@ export async function drawMemberEventCard(
   ctx.fillStyle = "#292b2f";
   ctx.fill();
 
-  const avatarImage = await loadImage(avatarUrl).catch(() => undefined);
+  const avatarImage = overrides?.avatarImage ?? (await loadImage(avatarUrl).catch(() => undefined));
   if (avatarImage) {
     ctx.save();
     ctx.beginPath();
@@ -132,27 +141,21 @@ export async function drawMemberEventCard(
     );
   }
 
-  let cursorY = BANNER_HEIGHT + avatarSize / 2 + 44 * fontScale;
+  let cursorY = BANNER_HEIGHT + avatarSize / 2 + 48 * fontScale;
   const glowColor = layout.glowColor ? parseHex(layout.glowColor) : layout.accentColor;
 
   ctx.textAlign = "center";
   applyTextEffect(ctx, layout.usernameEffect, glowColor);
-  ctx.font = withFallback(`${Math.round(30 * fontScale)}px Helvetica Bold`);
+  ctx.font = resolveFont(36 * fontScale, layout.fontFamily, true);
   ctx.fillStyle = layout.usernameColor ? parseHex(layout.usernameColor) : "#FFFFFF";
   ctx.fillText(truncateText(username, 24), width / 2, cursorY);
 
   applyTextEffect(ctx, "none", glowColor);
-  const dividerY = cursorY + 14 * fontScale;
-  const dividerWidth = 36 * fontScale;
-  ctx.beginPath();
-  ctx.roundRect(width / 2 - dividerWidth / 2, dividerY, dividerWidth, 3, [2]);
-  ctx.fillStyle = hexToRgba(layout.accentColor, 0.9);
-  ctx.fill();
 
   if (layout.message) {
-    cursorY += 32 * fontScale;
+    cursorY += 34 * fontScale;
     applyTextEffect(ctx, layout.messageEffect, glowColor);
-    ctx.font = withFallback(`${Math.round(18 * fontScale)}px Helvetica`);
+    ctx.font = resolveFont(22 * fontScale, layout.fontFamily);
     ctx.fillStyle = layout.messageColor
       ? parseHex(layout.messageColor)
       : "rgba(255, 255, 255, 0.85)";
@@ -161,16 +164,25 @@ export async function drawMemberEventCard(
 
   applyTextEffect(ctx, "none", glowColor);
 
+  if (layout.secondaryMessage) {
+    cursorY += 28 * fontScale;
+    ctx.font = resolveFont(18 * fontScale, layout.fontFamily);
+    ctx.fillStyle = layout.secondaryMessageColor
+      ? parseHex(layout.secondaryMessageColor)
+      : "rgba(255, 255, 255, 0.6)";
+    ctx.fillText(truncateText(layout.secondaryMessage, 72), width / 2, cursorY);
+  }
+
   if (layout.memberCount != null && layout.memberCountText) {
-    cursorY += 30 * fontScale;
-    ctx.font = withFallback(`bold ${Math.round(16 * fontScale)}px Helvetica Bold`);
+    cursorY += 32 * fontScale;
+    ctx.font = resolveFont(19 * fontScale, layout.fontFamily, true);
     ctx.fillStyle = hexToRgba(layout.accentColor, 1);
     ctx.fillText(layout.memberCountText, width / 2, cursorY);
   }
 
   if (layout.dateText) {
-    cursorY += 26 * fontScale;
-    ctx.font = withFallback(`${Math.round(14 * fontScale)}px Helvetica`);
+    cursorY += 28 * fontScale;
+    ctx.font = resolveFont(16 * fontScale, layout.fontFamily);
     ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
     ctx.fillText(layout.dateText, width / 2, cursorY);
   }

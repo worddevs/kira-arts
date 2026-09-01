@@ -1,11 +1,8 @@
-import type { Canvas } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
-
+import { type Canvas, createCanvas, loadImage } from "@napi-rs/canvas";
 import { parseHex, parseImg } from "../validations.utils";
 import { KiraError } from "../error.utils";
 import { MAX_BORDER_COLORS } from "../canvasShared.utils";
-import type { ProfileOptions, CanvasBadge } from "../../@Types/index";
-import { KiraErrorCode } from "../../@Types/index";
+import { type ProfileOptions, type CanvasBadge, KiraErrorCode } from "../../@Types/index";
 import { otherImgs, alphaValue } from "./constants";
 
 export async function genBase(

@@ -70,10 +70,23 @@ export async function renderMemberEventCard(
   });
 
   const localDateType = options.localDateType ?? "es";
-  const rawMessage = options.message ?? defaultMessage;
-  const message = normalizeDisplayText(
-    formatMessage(rawMessage, username, normalizeDisplayText(guildName), options.memberCount),
-  );
+  const rawMessage = options.message === "" ? undefined : (options.message ?? defaultMessage);
+  const message = rawMessage
+    ? normalizeDisplayText(
+        formatMessage(rawMessage, username, normalizeDisplayText(guildName), options.memberCount),
+      )
+    : undefined;
+
+  const secondaryMessage = options.secondaryMessage
+    ? normalizeDisplayText(
+        formatMessage(
+          options.secondaryMessage,
+          username,
+          normalizeDisplayText(guildName),
+          options.memberCount,
+        ),
+      )
+    : undefined;
 
   const dateText = options.showDate
     ? getDateOrString(options.date, Date.now(), localDateType)
@@ -91,6 +104,7 @@ export async function renderMemberEventCard(
     kind,
     kindLabel: formatKindLabel(kind, localDateType),
     message,
+    secondaryMessage,
     memberCount: options.memberCount,
     memberCountText,
     dateText,
@@ -98,8 +112,15 @@ export async function renderMemberEventCard(
     borderColors,
     usernameColor: options.usernameColor ?? palette?.usernameColor,
     messageColor: options.messageColor ?? palette?.messageColor,
+    secondaryMessageColor: options.secondaryMessageColor,
+    fontFamily: options.fontFamily,
     customBackground: options.customBackground,
     fontScale,
+    layoutStyle: options.layout ?? "centered",
+    size: options.size ?? "standard",
+    animated: options.animated ?? false,
+    confetti: options.confetti ?? false,
+    gifSeconds: options.gifSeconds,
     avatarFrameUrl,
     avatarBorderColor: options.avatarBorderColor,
     serverTag,

@@ -1,7 +1,5 @@
-import type { Image, SKRSContext2D } from "@napi-rs/canvas";
-import { loadImage } from "@napi-rs/canvas";
-import type { ColorResolutionSources } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type Canvas, type Image, type SKRSContext2D, loadImage } from "@napi-rs/canvas";
+import { type ColorResolutionSources, KiraErrorCode } from "../@Types/index";
 import { KiraError } from "./error.utils";
 import { parseHex } from "./validations.utils";
 
@@ -133,7 +131,7 @@ export function drawGradientBorder(
 
 export function drawCoverImage(
   ctx: SKRSContext2D,
-  image: Image,
+  image: Image | Canvas,
   x: number,
   y: number,
   w: number,

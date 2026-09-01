@@ -1,13 +1,23 @@
 import { AttachmentBuilder } from "discord.js";
 
 import { extensionForFormat } from "./output.utils";
-import type { OutputFormat } from "../@Types/index";
+import type { OutputFormat, AttachmentOptions } from "../@Types/index";
 
 export function toAttachment(
   buffer: Buffer,
-  name = "card",
+  nameOrOptions?: string | AttachmentOptions,
   format?: OutputFormat,
 ): AttachmentBuilder {
-  const fileName = name.includes(".") ? name : `${name}.${extensionForFormat(format)}`;
+  let name = "card";
+  let resolvedFormat = format;
+
+  if (typeof nameOrOptions === "string") {
+    name = nameOrOptions;
+  } else if (nameOrOptions) {
+    name = nameOrOptions.name ?? name;
+    resolvedFormat = nameOrOptions.extension ?? resolvedFormat;
+  }
+
+  const fileName = name.includes(".") ? name : `${name}.${extensionForFormat(resolvedFormat)}`;
   return new AttachmentBuilder(buffer, { name: fileName });
 }

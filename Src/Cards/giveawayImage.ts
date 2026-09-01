@@ -13,8 +13,6 @@ import {
   KiraErrorCode,
 } from "../@Types/index";
 
-export type { GiveawayOptions } from "../@Types/index";
-
 export async function giveawayImage(prize: string, options: GiveawayOptions = {}): Promise<Buffer> {
   if (!prize || typeof prize !== "string") {
     throw new KiraError("A valid prize is required", KiraErrorCode.Validation);

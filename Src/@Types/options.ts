@@ -1,4 +1,10 @@
-import type { PresenceStatus, BorderAlign, OutputOptions, ColorInput } from "./common";
+import type {
+  PresenceStatus,
+  BorderAlign,
+  OutputOptions,
+  ColorInput,
+  KiraFontFamily,
+} from "./common";
 import type { KiraThemeName } from "./theme";
 import type { KiraBadge } from "./user";
 
@@ -12,10 +18,19 @@ export interface RankOptions {
   autoColorRank?: boolean;
 }
 
+export type MemberEventLayoutStyle = "centered" | "banner";
+export type MemberEventSize = "compact" | "standard" | "wide";
+
 export interface MemberEventOptions {
   message?: string;
+  secondaryMessage?: string;
   memberCount?: number;
   customBackground?: string;
+  layout?: MemberEventLayoutStyle;
+  size?: MemberEventSize;
+  animated?: boolean;
+  confetti?: boolean;
+  gifSeconds?: number;
   borderColor?: ColorInput;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
@@ -23,6 +38,8 @@ export interface MemberEventOptions {
   accentColor?: string;
   usernameColor?: string;
   messageColor?: string;
+  secondaryMessageColor?: string;
+  fontFamily?: KiraFontFamily;
   showDate?: boolean;
   date?: Date | string;
   localDateType?: string;

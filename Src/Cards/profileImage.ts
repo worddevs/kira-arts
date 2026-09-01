@@ -2,13 +2,13 @@ import { KiraError } from "../Utils/error.utils";
 import { fetchUserData } from "../Utils/fetch.utils";
 import { genPng } from "../Utils/profileImage.output.utils";
 import { getThemePalette } from "../Utils/themes.utils";
-import type { ProfileOptions } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { type ProfileOptions, KiraErrorCode } from "../@Types/index";
 
 export async function profileImage(userId: string, options: ProfileOptions = {}): Promise<Buffer> {
   if (!userId || typeof userId !== "string")
     throw new KiraError(
-      `TypeError: Invalid argument for profileImage()\nExpected string userId, got ${typeof userId === "undefined" || !userId ? "undefined" : typeof userId}`,
+      `TypeError: Invalid argument for profileImage()\n` +
+        `Expected string userId, got ${typeof userId === "undefined" || !userId ? "undefined" : typeof userId}`,
       KiraErrorCode.Validation,
     );
 

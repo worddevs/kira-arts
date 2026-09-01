@@ -1,5 +1,4 @@
-import type { SKRSContext2D } from "@napi-rs/canvas";
-import { loadImage } from "@napi-rs/canvas";
+import { type SKRSContext2D, loadImage } from "@napi-rs/canvas";
 
 import { abbreviateNumber, truncateText } from "../strings.utils";
 import { parseHex } from "../validations.utils";

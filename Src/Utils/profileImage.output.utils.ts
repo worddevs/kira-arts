@@ -1,5 +1,4 @@
 import { createCanvas } from "@napi-rs/canvas";
-
 import {
   getBadges,
   genBase,

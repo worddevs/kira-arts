@@ -96,6 +96,7 @@ export async function drawBadgesPill(
   maxBadges: number,
   iconSize = 20,
   pillHeight = 32,
+  pillY = 16,
 ): Promise<void> {
   const shown = badges.slice(0, maxBadges > 0 ? maxBadges : 3);
   if (!shown.length) return;
@@ -105,7 +106,6 @@ export async function drawBadgesPill(
   const totalIconsWidth = shown.length * iconSize + (shown.length - 1) * gap;
   const pillWidth = paddingX * 2 + totalIconsWidth;
   const pillX = width - 16 - pillWidth;
-  const pillY = 16;
 
   ctx.save();
   ctx.beginPath();

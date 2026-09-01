@@ -1,11 +1,14 @@
-import type { Canvas } from "@napi-rs/canvas";
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { type Canvas, createCanvas, loadImage } from "@napi-rs/canvas";
 
 import { truncateText } from "../strings.utils";
 import { parsePng } from "../validations.utils";
 import { KiraError } from "../error.utils";
-import type { ProfileOptions, KiraUserData, CanvasBadge } from "../../@Types/index";
-import { KiraErrorCode } from "../../@Types/index";
+import {
+  type ProfileOptions,
+  type KiraUserData,
+  type CanvasBadge,
+  KiraErrorCode,
+} from "../../@Types/index";
 import { otherImgs, clydeID } from "./constants";
 
 export async function getBadges(
@@ -22,7 +25,7 @@ export async function getBadges(
     const canvas = await loadImage(icon).catch(() => undefined);
     if (!canvas) {
       throw new KiraError(
-        `Could not load badge: (${name})\nIf you think it is not a network problem, please report it in our discord: https://discord.gg/csedxqGQKP`,
+        `Could not load badge: (${name})\nIf you think it is not a network problem, please report it in our discord: https://discord.gg/smp7hwrXr4`,
         KiraErrorCode.AssetLoad,
       );
     }

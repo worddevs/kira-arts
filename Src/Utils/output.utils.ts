@@ -1,24 +1,27 @@
 import type { Canvas } from "@napi-rs/canvas";
 
 import { KiraError } from "./error.utils";
-import type { OutputFormat, OutputOptions } from "../@Types/index";
-import { KiraErrorCode } from "../@Types/index";
+import { applyWatermarkToCanvas } from "./watermark.utils";
+import { type OutputFormat, type OutputOptions, KiraErrorCode } from "../@Types/index";
 
 const MIME_MAP: Record<OutputFormat, string> = {
   png: "image/png",
   jpeg: "image/jpeg",
   webp: "image/webp",
+  gif: "image/gif",
 };
 
 const DEFAULT_QUALITY = 90;
 
 export async function encodeCanvas(canvas: Canvas, output?: OutputOptions): Promise<Buffer> {
+  await applyWatermarkToCanvas(canvas);
+
   const format = output?.format ?? "png";
   const mime = MIME_MAP[format];
 
   if (!mime) {
     throw new KiraError(
-      `Invalid output format ('${output?.format}'), must be one of: png, jpeg, webp`,
+      `Invalid output format ('${output?.format}'), must be one of: png, jpeg, webp, gif`,
       KiraErrorCode.Validation,
     );
   }
@@ -35,11 +38,16 @@ export async function encodeCanvas(canvas: Canvas, output?: OutputOptions): Prom
     );
   }
 
+  if (format === "gif") {
+    return canvas.toBuffer("image/gif", quality);
+  }
+
   return canvas.toBuffer(mime as "image/jpeg" | "image/webp", quality);
 }
 
 export function extensionForFormat(format?: OutputFormat): string {
   if (format === "jpeg") return "jpg";
   if (format === "webp") return "webp";
+  if (format === "gif") return "gif";
   return "png";
 }

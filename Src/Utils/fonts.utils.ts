@@ -2,6 +2,8 @@ import { GlobalFonts } from "@napi-rs/canvas";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import type { KiraFontFamily } from "../@Types/index";
+
 let initialized = false;
 
 export function ensureFontsRegistered(): void {
@@ -14,7 +16,12 @@ export function ensureFontsRegistered(): void {
   GlobalFonts.registerFromPath(`${fontsDir}/HelveticaBold.ttf`, "Helvetica Bold");
   GlobalFonts.registerFromPath(`${fontsDir}/Helvetica.ttf`, "Helvetica");
 
-  const fallbackFonts: Array<[string, string]> = [
+  const bundledFonts: Array<[string, string]> = [
+    ["Arimo.ttf", "Arimo"],
+    ["Gelasio.ttf", "Gelasio"],
+    ["Anton.ttf", "Anton"],
+    ["Cousine-Regular.ttf", "Cousine"],
+    ["Cousine-Bold.ttf", "Cousine"],
     ["MPLUSRounded1c-Bold.ttf", "MPLUS Rounded"],
     ["NotoSans-Bold.ttf", "Noto Sans"],
     ["NotoSansSymbols-Regular.ttf", "Noto Sans Symbols"],
@@ -24,7 +31,7 @@ export function ensureFontsRegistered(): void {
     ["NotoSansSymbols2-Regular.ttf", "Noto Sans Symbols 2"],
   ];
 
-  for (const [file, family] of fallbackFonts) {
+  for (const [file, family] of bundledFonts) {
     try {
       GlobalFonts.registerFromPath(`${fontsDir}/${file}`, family);
     } catch {
@@ -40,4 +47,32 @@ const FALLBACK_FAMILY_STACK =
 
 export function withFallback(fontDeclaration: string): string {
   return `${fontDeclaration}, ${FALLBACK_FAMILY_STACK}`;
+}
+
+const FONT_FAMILY_STACKS: Record<KiraFontFamily, string> = {
+  default: '"Helvetica"',
+  arial: '"Arial", "Liberation Sans", "Arimo", "Helvetica"',
+  impact: '"Impact", "Anton", "Helvetica Bold"',
+  georgia: '"Georgia", "Gelasio", "Helvetica"',
+  courierNew: '"Courier New", "Liberation Mono", "Cousine", "Courier", "Helvetica"',
+  verdana: '"Verdana", "DejaVu Sans", "Helvetica"',
+  tahoma: '"Tahoma", "DejaVu Sans", "Helvetica"',
+};
+
+export function resolveFont(
+  size: number,
+  family: KiraFontFamily | undefined,
+  bold: boolean = false,
+): string {
+  const resolvedSize = Math.round(size);
+
+  if (!family || family === "default") {
+    const base = bold ? '"Helvetica Bold"' : '"Helvetica"';
+    return `${resolvedSize}px ${base}, ${FALLBACK_FAMILY_STACK}`;
+  }
+
+  const stack = FONT_FAMILY_STACKS[family] ?? FONT_FAMILY_STACKS.default;
+  const weightPrefix = bold ? "bold " : "";
+  const boldSafetyNet = bold ? ', "Helvetica Bold"' : "";
+  return `${weightPrefix}${resolvedSize}px ${stack}${boldSafetyNet}, ${FALLBACK_FAMILY_STACK}`;
 }
