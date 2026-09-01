@@ -69,7 +69,7 @@ client.on("messageCreate", async (message) => {
     badgesFrame: true,
   });
 
-  await message.reply({ files: [toAttachment(buffer, "profile", "png")] });
+  await message.reply({ files: [toAttachment(buffer, { name: "profile", extension: "png" })] });
 });
 
 client.login(process.env.TOKEN);
