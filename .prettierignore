@@ -5,4 +5,5 @@ coverage
 *.md
 !README.md
 !CHANGELOG.md
+!SECURITY.md
 Src/Public
