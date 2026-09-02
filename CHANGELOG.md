@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-09-01
+
+### Added
+
+- **Animated GIF support for Member Event cards** — `welcomeImage()` and `leaveImage()` can now render fully animated GIFs when using animated avatars or animated background images.
+- **Animated Member Event options** — Added `confetti?: boolean` and `animated?: boolean` to `MemberEventOptions`, enabling confetti celebrations and animated avatar/background playback for Welcome & Leave cards.
+- **Giveaway confetti** — Giveaway cards now include confetti decorations when a giveaway ends.
+- **Global watermarking** — Added `setWatermark(options)` and `getWatermark()` for configuring a text or image watermark once and applying it automatically across every card output. Supports custom positioning, opacity, scale, and styling.
+- **Improved `toAttachment()` API** — `toAttachment()` now accepts an options object (`{ name, extension }`) in addition to the existing positional arguments, providing a more convenient way to specify attachment details.
+
 ## [1.3.2] - 2026-08-27
 
 ### Fixed
+
 - Migrated the build from `tsup` (unmaintained, no longer receiving updates)
   to `tsdown`. Several barrel re-exports in `Src/@Types/index.ts` and
   `Src/Utils/ShipCard/index.ts` re-exported `type`/`interface` declarations
@@ -32,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `types` per condition in `exports`.
 
 ### Removed
+
 - `Scripts/swap-readme.mjs` and its `prepack`/`postpack` lifecycle hooks have
   been removed for good. npm currently publishes the full `README.md` as-is;
   a proper npm/GitHub README split is tracked separately for a future
@@ -40,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.1] - 2026-08-23
 
 ### Fixed
+
 - Removed `Src/Utils/badgeMap.ts`, a dead, orphaned duplicate of the badge
   catalog in `badges.utils.ts`. Nothing in the codebase imported it, and it
   carried an outdated label for `CertifiedModerator`
@@ -51,8 +64,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the GitHub repository keeps the complete version untouched.
 
 ## [1.3.0] - 2026-08-14
- 
+
 ### Added
+
 - `giveawayImage(prize, options)` — Giveaway card with prize, host attribution,
   winner count, entry status (`active` | `ended`), and countdown/end-date text.
 - Optional host attribution (`hostId`, or manual `hostName`/`hostAvatar`) and up
@@ -66,6 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   resolves its border through the shared color-resolution logic.
 
 ### Changed
+
 - Unified the border color length validation across cards behind a single
   `MAX_BORDER_COLORS` constant (previously `ProfileImage` enforced its own,
   inconsistent limit of 20 colors with no matching validation elsewhere).
@@ -75,6 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.5] - 2026-08-07
 
 ### Fixed
+
 - `shipImage()` had a hardcoded Spanish string in the compatibility percentage
   label (`"LA COMPATIBILIDAD ES X%"`) regardless of locale. Now correctly shows
   `"COMPATIBILITY IS X%"`, consistent with the rest of the library's
@@ -83,6 +99,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.4] - 2026-07-29
 
 ### Fixed
+
 - `profileImage()` always pre-filled `borderColor` with the active theme's
   default color before the internal renderer could check whether the caller
   had explicitly set one. This silently broke Nitro profile-theme
@@ -96,6 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.3] - 2026-07-26
 
 ### Changed
+
 - Moved `SourceIconKind` and `SourceMeta` (Now Playing card's platform-badge
   types) out of `Src/Utils/NowPlayingCard/sources.ts` and into `Src/@Types`,
   matching the rest of the library's convention of keeping `@Types` limited to
@@ -106,6 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.2] - 2026-07-25
 
 ### Fixed
+
 - `ResolvedLeaderboardEntry`, `LevelUpLayout`, `MemberEventLayout`, `TextEffect`,
   and `CanvasBadge` were being imported from local `./constants` / sibling module
   files instead of their actual source in `@Types`, causing "not exported member"
@@ -116,6 +135,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `Src/@Types/index.ts`) and are now exported alongside the other public types.
 
 ### Changed
+
 - Pinned `typescript` to `~6.0.3` (was `^6.0.3`) to prevent an unintended
   major-version jump to TS 7.0, which is not yet supported by
   `typescript-eslint` or `tsup`'s DTS build step.
@@ -125,6 +145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.1] - 2026-07-24
 
 ### Added
+
 - `funding` field in `package.json` for the "Fund this package" button on npm.
 - CI: Socket Security scanning, `npm audit`, CodeQL, and dependency review.
 - Stale bot to auto-close inactive issues/PRs after 60+14 days of no activity.
@@ -133,6 +154,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - 2026-07-23
 
 ### Added
+
 - `nowPlayingImage(track, options)` — Now Playing card with playback progress, a
   source-platform badge, and livestream/radio support (`isStream`).
 - Automatic platform detection: YouTube, Spotify, SoundCloud, Twitch, Deezer, Apple
@@ -155,6 +177,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.1] - 2026-07-20
 
 ### Fixed
+
 - Removed `@rolldown/binding-win32-x64-msvc`, which had been manually forced into
   the dependency tree as a workaround for an earlier local npm bug — caused
   unnecessary downloads for end users and CI failures on Linux runners. npm/rolldown
@@ -163,12 +186,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (`Public` lives at the project root, not under `Src`).
 
 ### Docs
+
 - Added `pnpm`, `yarn`, and `bun` installation instructions to the README,
   alongside `npm`.
 
 ## [1.1.0] - 2026-07-19
 
 ### Fixed
+
 - Corrected the `copyfiles` build script to copy `Public/**/*` into `dist/Public/*`
   — fonts were never being included in the published package due to a path
   referencing `Src/Public` instead of the project-root `Public` folder.
@@ -180,6 +205,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-07-19
 
 ### Added
+
 - Initial from-scratch TypeScript implementation of profile, welcome/leave,
   level-up, achievement, leaderboard, and ship card generation.
 - 8 built-in themes: `discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`,
