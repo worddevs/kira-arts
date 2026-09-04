@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-09-04
+
+### Fixed
+
+- `KiraWatermarkOptions` was missing `size`, `offsetX`, and `offsetY`, and
+  `WatermarkPosition` was missing `"center"`, `"center-left"`, and
+  `"center-right"` — the public type declared fewer fields/positions than
+  `applyWatermarkToCanvas()` actually needed, silently falling back to
+  `"top-left"` behavior for any of the missing positions.
+
 ## [1.4.0] - 2026-09-01
 
 ### Added

@@ -13,12 +13,16 @@ declare module "gifenc" {
       height: number,
       options?: GifWriteFrameOptions,
     ): void;
+
     finish(): void;
+
     bytes(): Uint8Array;
   }
 
   export function GIFEncoder(): GifEncoderInstance;
+
   export function quantize(data: Uint8ClampedArray | Uint8Array, maxColors: number): number[][];
+
   export function applyPalette(
     data: Uint8ClampedArray | Uint8Array,
     palette: number[][],
@@ -29,5 +33,6 @@ declare module "gifenc" {
     quantize: typeof quantize;
     applyPalette: typeof applyPalette;
   };
+
   export default gifenc;
 }

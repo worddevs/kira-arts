@@ -31,7 +31,14 @@ export interface KiraCacheOptions {
   ttl?: number;
 }
 
-export type WatermarkPosition = "bottom-right" | "bottom-left" | "top-right" | "top-left";
+export type WatermarkPosition =
+  | "bottom-right"
+  | "bottom-left"
+  | "top-right"
+  | "top-left"
+  | "center"
+  | "center-left"
+  | "center-right";
 
 export interface KiraWatermarkOptions {
   text?: string;
@@ -42,6 +49,9 @@ export interface KiraWatermarkOptions {
   color?: string;
   margin?: number;
   scale?: number;
+  size?: number;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 export interface GifFrame {
