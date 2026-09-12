@@ -49,6 +49,7 @@ async function renderAnimatedMemberEvent(
   layout: MemberEventLayout,
   width: number,
   height: number,
+  output?: OutputOptions,
 ): Promise<Buffer> {
   const avatarSource = await fetchImageSource(avatarUrl).catch(() => null);
   const animatedAvatar = avatarSource?.animated ?? null;
@@ -69,7 +70,7 @@ async function renderAnimatedMemberEvent(
   const frameCount = resolveGifFrameCount(layout.gifSeconds);
 
   if (!animatedBackground && !animatedAvatar && !wantsConfetti) {
-    return renderStaticMemberEventGif(
+    return renderStaticMemberEventImage(
       avatarUrl,
       username,
       layout,
@@ -77,6 +78,7 @@ async function renderAnimatedMemberEvent(
       height,
       avatarImage,
       staticBackgroundImage,
+      output,
     );
   }
 
@@ -133,7 +135,7 @@ async function renderAnimatedMemberEvent(
   return encodeGif(frames, GIF_FRAME_DELAY_MS);
 }
 
-async function renderStaticMemberEventGif(
+async function renderStaticMemberEventImage(
   avatarUrl: string,
   username: string,
   layout: MemberEventLayout,
@@ -141,6 +143,7 @@ async function renderStaticMemberEventGif(
   height: number,
   avatarImage: Awaited<ReturnType<typeof loadImage>> | undefined,
   backgroundImage: Awaited<ReturnType<typeof loadImage>> | undefined,
+  output?: OutputOptions,
 ): Promise<Buffer> {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext("2d");
@@ -151,8 +154,7 @@ async function renderStaticMemberEventGif(
   });
   await applyWatermarkToCanvas(canvas);
 
-  const imageData = ctx.getImageData(0, 0, width, height);
-  return encodeGif([{ data: imageData.data, width, height }], GIF_FRAME_DELAY_MS);
+  return encodeCanvas(canvas, output);
 }
 
 export async function genMemberEventPng(
@@ -164,7 +166,7 @@ export async function genMemberEventPng(
   const { width, height } = getCardDimensions(layout);
 
   if (layout.animated) {
-    return renderAnimatedMemberEvent(avatarUrl, username, layout, width, height);
+    return renderAnimatedMemberEvent(avatarUrl, username, layout, width, height, output);
   }
 
   const { canvas, ctx } = createMemberEventCanvas(width, height);

@@ -2,6 +2,8 @@
 
 A TypeScript library for generating Discord-style visual cards — profiles, welcome/leave events, level-ups, achievements, leaderboards, compatibility "ship" cards, now-playing music cards, and giveaways — rendered natively for speed and zero runtime dependencies on a browser or headless Chromium.
 
+<img src="https://i.imgur.com/AMk4jWr.png" alt="Kira Arts" width="100%">
+
 **📚 Full documentation, live examples, and a Playground: [documentation](https://guide.worddevs.dev/docs/kira-arts)**
 
 [![npm version](https://img.shields.io/npm/v/kira-arts.svg)](https://www.npmjs.com/package/kira-arts)

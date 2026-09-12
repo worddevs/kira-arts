@@ -24,13 +24,16 @@ function formatMessage(
 
 function formatMemberCount(memberCount: number, localDateType: string): string {
   const isEs = localDateType.startsWith("es");
-  return isEs ? `Member #${memberCount}` : `Member #${memberCount}`;
+
+  return isEs ? `Miembro #${memberCount}` : `Member #${memberCount}`;
 }
 
 function formatKindLabel(kind: "welcome" | "leave", localDateType: string): string {
   const isEs = localDateType.startsWith("es");
-  if (kind === "welcome") return isEs ? "NEW MEMBER" : "NEW MEMBER";
-  return isEs ? "MEMBER LEFT" : "MEMBER LEFT";
+
+  if (kind === "welcome") return isEs ? "NUEVO MIEMBRO" : "NEW MEMBER";
+
+  return isEs ? "MIEMBRO SALIÓ" : "MEMBER LEFT";
 }
 
 export async function renderMemberEventCard(
@@ -69,7 +72,7 @@ export async function renderMemberEventCard(
     fallback: palette?.borderColor ?? [accentColor],
   });
 
-  const localDateType = options.localDateType ?? "es";
+  const localDateType = options.localDateType ?? "en";
   const rawMessage = options.message === "" ? undefined : (options.message ?? defaultMessage);
   const message = rawMessage
     ? normalizeDisplayText(
