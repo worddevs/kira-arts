@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-19
+
+### Added
+
+- **`birthdayImage()`** — a festive birthday card with balloons, confetti, a cake icon and an optional `age` / `yearsInServer` counter.
+- **`marriageImage()`** — a certificate-style card for two users, with interlocking rings, laurel branches, and a `daysTogether` count calculated automatically from `marriedSince`.
+- **`weeklyRecapImage()`** — a personal "wrapped"-style weekly summary card: messages sent, voice time, XP gained, current streak, and a 7-day activity bar chart with the peak day highlighted.
+- **`codeSnippetImage()`** — a Carbon-style code screenshot with basic syntax highlighting (JavaScript, TypeScript, Python, Java, C#, JSON, Bash, plaintext), line numbers, highlightable lines, and six built-in editor themes (`midnight`, `dracula`, `nord`, `github`, `monokai`, `synthwave`). Unlike the other new cards, it doesn't take a Discord user ID — it renders straight from a code string.
+
 ## [1.4.1] - 2026-09-04
 
 ### Fixed

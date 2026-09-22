@@ -24,8 +24,9 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 
 ## ✨ Features
 
-- 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, and Giveaway cards
+- 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, Giveaway, Birthday, Marriage, Weekly Recap, and Code Snippet cards
 - 🎵 Now Playing card ships with adapters for moonlink.js, Lavalink-based clients (erela.js, Shoukaku, Kazagumo, Riffy, Magmastream, lavalink-client), discord-player, and distube
+- 💻 Code Snippet card renders syntax-highlighted code screenshots (JavaScript, TypeScript, Python, Java, C#, JSON, Bash, plaintext) in 6 built-in editor themes, without needing a Discord user ID
 - 🎨 8 built-in themes (`discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`, `monochrome`, `gold`), Nitro/role-color aware borders, and up to 4-color custom gradients
 - 🧾 Output as `png`, `jpeg`, or `webp`, ready to use as a discord.js `AttachmentBuilder` via `toAttachment()`
 - ⚡ Built-in, configurable in-memory cache for fetched user data (`setCacheOptions`, `clearCache`, `getCacheSize`)
@@ -81,17 +82,21 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 
 ## 🃏 Cards at a glance
 
-| Card        | Function                                      | What it's for                               |
-| ----------- | --------------------------------------------- | ------------------------------------------- |
-| Profile     | `profileImage(userId, options)`               | Avatar, badges, nameplate, server tag, rank |
-| Welcome     | `welcomeImage(userId, guildName, options)`    | Member join events                          |
-| Leave       | `leaveImage(userId, guildName, options)`      | Member leave events                         |
-| Level Up    | `levelUpImage(userId, level, options)`        | XP progress bar on level-up                 |
-| Achievement | `achievementImage(userId, title, options)`    | Unlockable achievements with rarity tiers   |
-| Leaderboard | `leaderboardImage(entries, options)`          | Server ranking table                        |
-| Ship        | `shipImage(leftUserId, rightUserId, options)` | Compatibility between two users             |
-| Now Playing | `nowPlayingImage(track, options)`             | Music player card with source detection     |
-| Giveaway    | `giveawayImage(prize, options)`               | Prize, host, entry count, winners on end    |
+| Card         | Function                                          | What it's for                                             |
+| ------------ | ------------------------------------------------- | --------------------------------------------------------- |
+| Profile      | `profileImage(userId, options)`                   | Avatar, badges, nameplate, server tag, rank               |
+| Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events                                        |
+| Leave        | `leaveImage(userId, guildName, options)`          | Member leave events                                       |
+| Level Up     | `levelUpImage(userId, level, options)`            | XP progress bar on level-up                               |
+| Achievement  | `achievementImage(userId, title, options)`        | Unlockable achievements with rarity tiers                 |
+| Leaderboard  | `leaderboardImage(entries, options)`              | Server ranking table                                      |
+| Ship         | `shipImage(leftUserId, rightUserId, options)`     | Compatibility between two users                           |
+| Now Playing  | `nowPlayingImage(track, options)`                 | Music player card with source detection                   |
+| Giveaway     | `giveawayImage(prize, options)`                   | Prize, host, entry count, winners on end                  |
+| Birthday     | `birthdayImage(userId, options)`                  | Balloons, confetti, and an optional age/years counter     |
+| Marriage     | `marriageImage(leftUserId, rightUserId, options)` | Certificate-style card with automatic days-together count |
+| Weekly Recap | `weeklyRecapImage(userId, options)`               | Wrapped-style weekly summary with a 7-day activity chart  |
+| Code Snippet | `codeSnippetImage(code, options)`                 | Carbon-style syntax-highlighted code screenshot           |
 
 ## 🛠️ Utilities
 
@@ -105,7 +110,7 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 | `clearCache()`                                  | Clears the internal user-data cache                                    |
 | `getCacheSize()`                                | Returns the number of entries currently cached                         |
 | `computeCompatibility(leftUserId, rightUserId)` | Deterministic compatibility percentage for the Ship card               |
-| `pickShipMessage(percentage)`                   | Flavor text matching a compatibility percentage                        |
+| `pickShipMessage(leftId, rightId, percentage)`  | Flavor text matching a compatibility percentage                        |
 | `getThemePalette(theme)`                        | Resolves a `KiraThemeName` to its full color palette                   |
 | `fromMoonlinkTrack(track)`                      | Adapter: moonlink.js track → `NowPlayingTrack`                         |
 | `fromLavalinkTrack(track)`                      | Adapter: Lavalink-based clients → `NowPlayingTrack`                    |

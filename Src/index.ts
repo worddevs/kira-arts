@@ -7,6 +7,10 @@ export { achievementImage } from "./Cards/achievementImage";
 export { shipImage } from "./Cards/shipImage";
 export { nowPlayingImage } from "./Cards/nowPlayingImage";
 export { giveawayImage } from "./Cards/giveawayImage";
+export { birthdayImage } from "./Cards/birthdayImage";
+export { marriageImage } from "./Cards/marriageImage";
+export { weeklyRecapImage } from "./Cards/weeklyRecapImage";
+export { codeSnippetImage } from "./Cards/codeSnippetImage";
 export { computeCompatibility, pickShipMessage } from "./Utils/ShipCard/index";
 export {
   fromMoonlinkTrack,
@@ -93,6 +97,17 @@ export type {
   GiveawayLayout,
   GiveawayStatus,
   GiveawayWinner,
+  BirthdayOptions,
+  BirthdayLayout,
+  MarriageOptions,
+  MarriageLayout,
+  WeeklyRecapDayStat,
+  WeeklyRecapOptions,
+  WeeklyRecapLayout,
+  CodeSnippetLanguage,
+  CodeSnippetTheme,
+  CodeSnippetOptions,
+  CodeSnippetLayout,
   KiraFontFamily,
   KiraWatermarkOptions,
   WatermarkPosition,

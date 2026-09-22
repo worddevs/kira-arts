@@ -54,3 +54,4 @@ Desktop.ini
 *.zip
 smoke-test.mjs
 smoke-*.png
+package-lock.json

@@ -1,0 +1,11 @@
+export const FONT_SIZE = 15;
+export const LINE_HEIGHT = 23;
+export const TITLE_BAR_HEIGHT = 46;
+export const CODE_PADDING_X = 28;
+export const CODE_PADDING_Y = 22;
+export const GUTTER_GAP = 22;
+export const WINDOW_RADIUS = 14;
+export const OUTER_PADDING = 46;
+export const MIN_CODE_WIDTH = 360;
+export const MAX_CODE_WIDTH = 900;
+export const TRAFFIC_LIGHT_COLORS = ["#FF5F56", "#FFBD2E", "#27C93F"];

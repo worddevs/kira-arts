@@ -97,3 +97,19 @@ export interface AttachmentOptions {
   name?: string;
   extension?: OutputFormat;
 }
+
+export interface CodeSnippetPalette {
+  pageGradient: [string, string];
+  windowBackground: string;
+  headerBackground: string;
+  borderColor: string;
+  gutterColor: string;
+  text: string;
+  comment: string;
+  keyword: string;
+  string: string;
+  number: string;
+  function: string;
+  punctuation: string;
+  accent: string;
+}

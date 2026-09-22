@@ -26,8 +26,10 @@
 
   "files.eol": "\n",
   "files.exclude": {
-    "**/dist": false,
-    "**/node_modules": false
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/coverage": true
   },
   "search.exclude": {
     "**/dist": true,

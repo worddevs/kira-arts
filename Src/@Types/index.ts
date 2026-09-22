@@ -18,6 +18,7 @@ export type {
   ConfettiParticle,
   MemberEventDrawOverrides,
   AttachmentOptions,
+  CodeSnippetPalette,
 } from "./common";
 
 export type {
@@ -73,6 +74,21 @@ export type {
   GiveawayWinner,
   GiveawayOptions,
   GiveawayLayout,
+  BirthdayOptions,
+  BirthdayLayout,
+  MarriageOptions,
+  MarriageLayout,
+  WeeklyRecapDayStat,
+  WeeklyRecapOptions,
+  WeeklyRecapLayout,
+  CodeSnippetLanguage,
+  CodeSnippetTheme,
+  CodeSnippetOptions,
+  CodeSnippetLayout,
+  TokenType,
+  Token,
+  LanguageConfig,
+  CodeSnippetDimensions,
 } from "./options";
 
 export type {

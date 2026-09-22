@@ -337,3 +337,159 @@ export interface GiveawayLayout {
   hostColor?: string;
   participantsCount?: number;
 }
+
+export interface BirthdayOptions {
+  age?: number;
+  yearsInServer?: number;
+  customMessage?: string;
+  accentColor?: string;
+  borderColor?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  useRoleColor?: boolean;
+  customBackground?: string;
+  showUsername?: boolean;
+  guildId?: string;
+  bypassCache?: boolean;
+  theme?: KiraThemeName;
+  output?: OutputOptions;
+}
+
+export interface BirthdayLayout {
+  username: string;
+  avatarUrl: string;
+  age?: number;
+  yearsInServer?: number;
+  message?: string;
+  accentColor: string;
+  borderColors: string[];
+  noBorder?: boolean;
+  customBackground?: string;
+}
+
+export interface MarriageOptions {
+  leftImage?: string;
+  rightImage?: string;
+  marriedSince?: Date | string;
+  vows?: string;
+  accentColor?: string;
+  borderColor?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  useRoleColor?: boolean;
+  customBackground?: string;
+  localDateType?: string;
+  guildId?: string;
+  bypassCache?: boolean;
+  theme?: KiraThemeName;
+  output?: OutputOptions;
+}
+
+export interface MarriageLayout {
+  leftUsername: string;
+  rightUsername: string;
+  leftAvatarUrl: string;
+  rightAvatarUrl: string;
+  dateText?: string;
+  daysTogether?: number;
+  vows?: string;
+  accentColor: string;
+  borderColors: string[];
+  noBorder?: boolean;
+  customBackground?: string;
+}
+
+export interface WeeklyRecapDayStat {
+  label: string;
+  value: number;
+}
+
+export interface WeeklyRecapOptions {
+  messagesSent?: number;
+  voiceMinutes?: number;
+  xpGained?: number;
+  currentStreak?: number;
+  rankChange?: number;
+  mostActiveDay?: string;
+  dailyActivity?: WeeklyRecapDayStat[];
+  guildName?: string;
+  accentColor?: string;
+  borderColor?: ColorInput;
+  removeBorder?: boolean;
+  useNitroTheme?: boolean;
+  useRoleColor?: boolean;
+  customBackground?: string;
+  guildId?: string;
+  bypassCache?: boolean;
+  theme?: KiraThemeName;
+  output?: OutputOptions;
+}
+
+export interface WeeklyRecapLayout {
+  username: string;
+  avatarUrl: string;
+  messagesSent?: number;
+  voiceMinutes?: number;
+  xpGained?: number;
+  currentStreak?: number;
+  rankChange?: number;
+  mostActiveDay?: string;
+  dailyActivity: WeeklyRecapDayStat[];
+  guildName?: string;
+  accentColor: string;
+  borderColors: string[];
+  noBorder?: boolean;
+  customBackground?: string;
+}
+
+export type CodeSnippetLanguage =
+  "javascript" | "typescript" | "python" | "java" | "csharp" | "json" | "bash" | "plaintext";
+
+export type CodeSnippetTheme = "midnight" | "dracula" | "nord" | "github" | "monokai" | "synthwave";
+
+export interface CodeSnippetOptions {
+  language?: CodeSnippetLanguage;
+  fileName?: string;
+  windowTitle?: string;
+  theme?: CodeSnippetTheme;
+  showLineNumbers?: boolean;
+  startLine?: number;
+  highlightLines?: number[];
+  accentColor?: string;
+  output?: OutputOptions;
+}
+
+export interface CodeSnippetLayout {
+  code: string;
+  language: CodeSnippetLanguage;
+  fileName?: string;
+  windowTitle?: string;
+  theme: CodeSnippetTheme;
+  showLineNumbers: boolean;
+  startLine: number;
+  highlightLines: number[];
+  accentColor?: string;
+}
+
+export type TokenType =
+  "comment" | "string" | "number" | "keyword" | "function" | "punctuation" | "plain";
+
+export interface Token {
+  text: string;
+  type: TokenType;
+}
+
+export interface LanguageConfig {
+  lineComment?: string;
+  keywords: Set<string>;
+}
+
+export interface CodeSnippetDimensions {
+  width: number;
+  height: number;
+  windowWidth: number;
+  windowHeight: number;
+  gutterWidth: number;
+  codeAreaWidth: number;
+  lines: string[];
+}
