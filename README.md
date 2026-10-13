@@ -32,6 +32,7 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 - ⚡ Built-in, configurable in-memory cache for fetched user data (`setCacheOptions`, `clearCache`, `getCacheSize`)
 - 🛡️ Typed error handling with `KiraError` and `KiraErrorCode`, instead of opaque runtime failures
 - 📦 Dual package: ESM and CommonJS builds, both with full type declarations, no extra config needed
+- 📐 Selectable `size` (`compact`, `standard`, `wide`) for Level Up cards, rendered as vectors so every size stays sharp
 
 ## 📦 Installation
 
@@ -82,21 +83,21 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 
 ## 🃏 Cards at a glance
 
-| Card         | Function                                          | What it's for                                             |
-| ------------ | ------------------------------------------------- | --------------------------------------------------------- |
-| Profile      | `profileImage(userId, options)`                   | Avatar, badges, nameplate, server tag, rank               |
-| Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events                                        |
-| Leave        | `leaveImage(userId, guildName, options)`          | Member leave events                                       |
-| Level Up     | `levelUpImage(userId, level, options)`            | XP progress bar on level-up                               |
-| Achievement  | `achievementImage(userId, title, options)`        | Unlockable achievements with rarity tiers                 |
-| Leaderboard  | `leaderboardImage(entries, options)`              | Server ranking table                                      |
-| Ship         | `shipImage(leftUserId, rightUserId, options)`     | Compatibility between two users                           |
-| Now Playing  | `nowPlayingImage(track, options)`                 | Music player card with source detection                   |
-| Giveaway     | `giveawayImage(prize, options)`                   | Prize, host, entry count, winners on end                  |
-| Birthday     | `birthdayImage(userId, options)`                  | Balloons, confetti, and an optional age/years counter     |
-| Marriage     | `marriageImage(leftUserId, rightUserId, options)` | Certificate-style card with automatic days-together count |
-| Weekly Recap | `weeklyRecapImage(userId, options)`               | Wrapped-style weekly summary with a 7-day activity chart  |
-| Code Snippet | `codeSnippetImage(code, options)`                 | Carbon-style syntax-highlighted code screenshot           |
+| Card         | Function                                          | What it's for                                               |
+| ------------ | ------------------------------------------------- | ----------------------------------------------------------- |
+| Profile      | `profileImage(userId, options)`                   | Avatar, badges, nameplate, server tag, rank                 |
+| Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events                                          |
+| Leave        | `leaveImage(userId, guildName, options)`          | Member leave events                                         |
+| Level Up     | `levelUpImage(userId, level, options)`            | XP progress bar on level-up, in compact/standard/wide sizes |
+| Achievement  | `achievementImage(userId, title, options)`        | Unlockable achievements with rarity tiers                   |
+| Leaderboard  | `leaderboardImage(entries, options)`              | Server ranking table                                        |
+| Ship         | `shipImage(leftUserId, rightUserId, options)`     | Compatibility between two users                             |
+| Now Playing  | `nowPlayingImage(track, options)`                 | Music player card with source detection                     |
+| Giveaway     | `giveawayImage(prize, options)`                   | Prize, host, entry count, winners on end                    |
+| Birthday     | `birthdayImage(userId, options)`                  | Balloons, confetti, and an optional age/years counter       |
+| Marriage     | `marriageImage(leftUserId, rightUserId, options)` | Certificate-style card with automatic days-together count   |
+| Weekly Recap | `weeklyRecapImage(userId, options)`               | Wrapped-style weekly summary with a 7-day activity chart    |
+| Code Snippet | `codeSnippetImage(code, options)`                 | Carbon-style syntax-highlighted code screenshot             |
 
 ## 🛠️ Utilities
 

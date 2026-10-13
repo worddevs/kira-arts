@@ -19,7 +19,10 @@ export interface RankOptions {
 }
 
 export type MemberEventLayoutStyle = "centered" | "banner";
-export type MemberEventSize = "compact" | "standard" | "wide";
+export type CardSize = "compact" | "standard" | "wide";
+
+/** @deprecated Use {@link CardSize}. Kept as an alias for backwards compatibility. */
+export type MemberEventSize = CardSize;
 
 export interface MemberEventOptions {
   message?: string;
@@ -99,6 +102,7 @@ export interface ShipOptions {
 }
 
 export interface LevelUpOptions {
+  size?: CardSize;
   message?: string;
   currentXp?: number;
   requiredXp?: number;
@@ -127,6 +131,7 @@ export interface LevelUpOptions {
 }
 
 export interface LevelUpLayout {
+  size?: CardSize;
   username: string;
   avatarUrl: string;
   level: number;

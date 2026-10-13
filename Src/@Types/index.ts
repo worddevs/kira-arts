@@ -55,6 +55,7 @@ export type {
   RankOptions,
   MemberEventOptions,
   MemberEventLayoutStyle,
+  CardSize,
   MemberEventSize,
   LevelUpOptions,
   LevelUpLayout,

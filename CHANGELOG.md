@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [Unreleased]
+
+## [1.6.0] - 2026-10-13
+
+### Added
+
+- **`size` option on `levelUpImage()`** — `LevelUpOptions` now accepts `size: "compact" | "standard" | "wide"` (default `"standard"`), producing a 560×208, 700×260 or 840×312 card. The card is rendered as vectors at the target scale, so smaller cards stay sharp instead of being downscaled from a finished buffer. ([#5](https://github.com/worddevs/kira-arts/issues/5))
+- **`CardSize` type** — a shared `"compact" | "standard" | "wide"` type exported from the package, intended for every card that supports `size`.
+- Tests for Level Up card dimensions and rendered output size for every `size` value.
+
+### Changed
+
+- `MemberEventSize` is now a deprecated alias of `CardSize`; existing code keeps compiling unchanged.
+- Updated dependencies: `@napi-rs/canvas` to `^1.0.11` (runtime), and the dev tooling `eslint` to `^10.12.0`, `prettier` to `^3.9.10`, `tsdown` to `^0.23.1`, `typescript-eslint` to `^8.71.2` and `vitest` to `^5.0.4`.
+
 ## [1.5.0] - 2026-09-19
 
 ### Added

@@ -55,6 +55,7 @@ export async function levelUpImage(
   const badges = options.showBadges ? data.assets.badges : undefined;
 
   const layout: LevelUpLayout = {
+    size: options.size ?? "standard",
     username,
     avatarUrl,
     level,
