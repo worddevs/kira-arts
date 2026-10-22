@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [Unreleased]
+## [1.7.0] - 2026-10-22
+
+### Added
+
+- **`showKindLabel` option on member event cards** — `MemberEventOptions` now accepts `showKindLabel: boolean` (default `true`). Set it to `false` to hide the "NEW MEMBER" / "MEMBER LEFT" pill (and its Spanish equivalents) on `welcomeImage()` and `leaveImage()`. Existing code keeps working unchanged.
 
 ## [1.6.0] - 2026-10-13
 

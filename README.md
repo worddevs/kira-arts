@@ -33,6 +33,7 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 - 🛡️ Typed error handling with `KiraError` and `KiraErrorCode`, instead of opaque runtime failures
 - 📦 Dual package: ESM and CommonJS builds, both with full type declarations, no extra config needed
 - 📐 Selectable `size` (`compact`, `standard`, `wide`) for Level Up cards, rendered as vectors so every size stays sharp
+- 🏷️ Optional "NEW MEMBER" / "MEMBER LEFT" pill on Welcome/Leave cards, which can be hidden with `showKindLabel: false`
 
 ## 📦 Installation
 
@@ -86,8 +87,8 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 | Card         | Function                                          | What it's for                                               |
 | ------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | Profile      | `profileImage(userId, options)`                   | Avatar, badges, nameplate, server tag, rank                 |
-| Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events                                          |
-| Leave        | `leaveImage(userId, guildName, options)`          | Member leave events                                         |
+| Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events, with an optional hideable kind pill     |
+| Leave        | `leaveImage(userId, guildName, options)`          | Member leave events, with an optional hideable kind pill    |
 | Level Up     | `levelUpImage(userId, level, options)`            | XP progress bar on level-up, in compact/standard/wide sizes |
 | Achievement  | `achievementImage(userId, title, options)`        | Unlockable achievements with rarity tiers                   |
 | Leaderboard  | `leaderboardImage(entries, options)`              | Server ranking table                                        |

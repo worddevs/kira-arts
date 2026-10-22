@@ -105,7 +105,7 @@ export async function renderMemberEventCard(
 
   const layout: MemberEventLayout = {
     kind,
-    kindLabel: formatKindLabel(kind, localDateType),
+    kindLabel: options.showKindLabel === false ? "" : formatKindLabel(kind, localDateType),
     message,
     secondaryMessage,
     memberCount: options.memberCount,

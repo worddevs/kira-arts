@@ -54,6 +54,8 @@ export interface MemberEventOptions {
   showServerTag?: boolean;
   showBadges?: boolean;
   maxBadges?: number;
+  /** Show the "NEW MEMBER" / "MEMBER LEFT" pill. Defaults to `true`. */
+  showKindLabel?: boolean;
   usernameEffect?: "shadow" | "glow";
   messageEffect?: "shadow" | "glow";
   glowColor?: string;
