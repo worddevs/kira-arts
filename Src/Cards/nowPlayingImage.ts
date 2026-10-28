@@ -77,6 +77,7 @@ export async function nowPlayingImage(
     sourceIcon: sourceMeta.icon,
     accentColor,
     borderColors,
+    borderMix: options.borderMix,
     barColors,
     titleColor: options.titleColor ?? palette?.usernameColor,
     authorColor: options.authorColor ?? palette?.tagColor,

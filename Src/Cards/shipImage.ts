@@ -73,6 +73,7 @@ export async function shipImage(
     message,
     accentColor,
     borderColors: borderColors.length ? borderColors : undefined,
+    borderMix: options.borderMix,
     noBorder: options.removeBorder,
     customBackground: options.customBackground,
     heartColor: options.heartColor ?? palette?.heartColor,

@@ -64,6 +64,7 @@ export async function marriageImage(
     vows: options.vows,
     accentColor: accentColor ?? "#D4AF37",
     borderColors,
+    borderMix: options.borderMix,
     noBorder: options.removeBorder,
     customBackground: options.customBackground,
   };

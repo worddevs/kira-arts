@@ -49,6 +49,7 @@ export async function weeklyRecapImage(
     guildName: options.guildName,
     accentColor: accentColor ?? "#818CF8",
     borderColors,
+    borderMix: options.borderMix,
     noBorder: options.removeBorder,
     customBackground: options.customBackground,
   };

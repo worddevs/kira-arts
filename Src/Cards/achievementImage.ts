@@ -42,6 +42,7 @@ export async function achievementImage(
     rarity: options.rarity,
     accentColor,
     borderColors: borderColors.length ? borderColors : undefined,
+    borderMix: options.borderMix,
     noBorder: options.removeBorder,
     customBackground: options.customBackground,
     usernameLine: options.showUsername === false ? undefined : username,

@@ -1,6 +1,6 @@
 import type { KiraNameplatePalette } from "./theme";
 import type { LeaderboardEntry, MemberEventLayoutStyle, MemberEventSize } from "./options";
-import type { KiraFontFamily } from "./common";
+import type { BorderMix, KiraFontFamily } from "./common";
 
 export interface KiraBadge {
   name: string;
@@ -111,6 +111,7 @@ export interface ShipLayout {
   message: string;
   accentColor?: string;
   borderColors?: string[];
+  borderMix?: BorderMix;
   noBorder?: boolean;
   customBackground?: string;
   heartColor?: string;
@@ -139,6 +140,7 @@ export interface MemberEventLayout {
   dateText?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   usernameColor?: string;
   messageColor?: string;
   secondaryMessageColor?: string;

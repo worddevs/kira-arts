@@ -1,7 +1,8 @@
 import { type Canvas, createCanvas, loadImage } from "@napi-rs/canvas";
-import { parseHex, parseImg } from "../validations.utils";
+import { parseImg } from "../validations.utils";
 import { KiraError } from "../error.utils";
 import { MAX_BORDER_COLORS } from "../canvasShared.utils";
+import { createBorderPaint } from "../borderMix.utils";
 import { type ProfileOptions, type CanvasBadge, KiraErrorCode } from "../../@Types/index";
 import { otherImgs, alphaValue } from "./constants";
 
@@ -99,14 +100,12 @@ export async function genBorder(borderColors: string[], options: ProfileOptions)
   const gradX = options.borderAllign == "vertical" ? 0 : 885;
   const gradY = options.borderAllign == "vertical" ? 303 : 0;
 
-  const grd = ctx.createLinearGradient(0, 0, gradX, gradY);
-
-  for (let i = 0; i < borderColors.length; i++) {
-    const stop = borderColors.length === 1 ? 0 : i / (borderColors.length - 1);
-    grd.addColorStop(stop, parseHex(borderColors[i]));
-  }
-
-  ctx.fillStyle = grd;
+  ctx.fillStyle = createBorderPaint(ctx, 885, 303, borderColors, options.borderMix, {
+    x1: 0,
+    y1: 0,
+    x2: gradX,
+    y2: gradY,
+  });
   ctx.beginPath();
   ctx.fillRect(0, 0, 885, 303);
 

@@ -27,7 +27,7 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 - 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, Giveaway, Birthday, Marriage, Weekly Recap, and Code Snippet cards
 - 🎵 Now Playing card ships with adapters for moonlink.js, Lavalink-based clients (erela.js, Shoukaku, Kazagumo, Riffy, Magmastream, lavalink-client), discord-player, and distube
 - 💻 Code Snippet card renders syntax-highlighted code screenshots (JavaScript, TypeScript, Python, Java, C#, JSON, Bash, plaintext) in 6 built-in editor themes, without needing a Discord user ID
-- 🎨 8 built-in themes (`discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`, `monochrome`, `gold`), Nitro/role-color aware borders, and up to 4-color custom gradients
+- 🎨 8 built-in themes (`discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`, `monochrome`, `gold`), Nitro/role-color aware borders, and up to 4 custom border colors with `linear`, `mixed`, or `random` blending
 - 🧾 Output as `png`, `jpeg`, or `webp`, ready to use as a discord.js `AttachmentBuilder` via `toAttachment()`
 - ⚡ Built-in, configurable in-memory cache for fetched user data (`setCacheOptions`, `clearCache`, `getCacheSize`)
 - 🛡️ Typed error handling with `KiraError` and `KiraErrorCode`, instead of opaque runtime failures

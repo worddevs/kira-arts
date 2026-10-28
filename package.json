@@ -1,6 +1,6 @@
 {
   "name": "kira-arts",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "TypeScript library to generate Discord-style profile, welcome and achievement cards",
   "keywords": [
     "discord",
@@ -76,9 +76,9 @@
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.10",
-    "tsdown": "^0.23.1",
+    "tsdown": "^0.23.3",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.72.0",
+    "typescript-eslint": "^8.72.1",
     "vitest": "^5.0.4"
   }
 }

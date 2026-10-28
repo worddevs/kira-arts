@@ -1,9 +1,11 @@
 import { type Canvas, type Image, type SKRSContext2D, loadImage } from "@napi-rs/canvas";
-import { type ColorResolutionSources, KiraErrorCode } from "../@Types/index";
+import { type BorderMix, type ColorResolutionSources, KiraErrorCode } from "../@Types/index";
 import { KiraError } from "./error.utils";
 import { parseHex } from "./validations.utils";
+import { createBorderPaint } from "./borderMix.utils";
 
 export const MAX_BORDER_COLORS = 4;
+export const DEFAULT_BORDER_THICKNESS = 5;
 
 export function resolveCardColors(sources: ColorResolutionSources): string[] {
   if (sources.removeBorder) return [];
@@ -110,17 +112,19 @@ export function drawGradientBorder(
   height: number,
   colors: string[],
   cornerRadius: number,
-  thickness = 5,
+  thickness = DEFAULT_BORDER_THICKNESS,
+  mix?: BorderMix,
 ): void {
-  const grd = ctx.createLinearGradient(0, 0, width, height);
-  for (let i = 0; i < colors.length; i++) {
-    const stop = colors.length === 1 ? 0 : i / (colors.length - 1);
-    grd.addColorStop(stop, parseHex(colors[i]));
-  }
+  const paint = createBorderPaint(ctx, width, height, colors, mix, {
+    x1: 0,
+    y1: 0,
+    x2: width,
+    y2: height,
+  });
 
   ctx.save();
   ctx.lineWidth = thickness;
-  ctx.strokeStyle = grd;
+  ctx.strokeStyle = paint;
   ctx.beginPath();
   ctx.roundRect(thickness / 2, thickness / 2, width - thickness, height - thickness, [
     Math.max(0, cornerRadius - thickness / 2),

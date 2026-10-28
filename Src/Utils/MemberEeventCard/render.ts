@@ -1,6 +1,11 @@
 import { type SKRSContext2D, loadImage } from "@napi-rs/canvas";
 
-import { drawCoverImage, drawGradientBorder, hexToRgba } from "../canvasShared.utils";
+import {
+  DEFAULT_BORDER_THICKNESS,
+  drawCoverImage,
+  drawGradientBorder,
+  hexToRgba,
+} from "../canvasShared.utils";
 import { parseHex } from "../validations.utils";
 import { truncateText } from "../strings.utils";
 import { resolveFont } from "../fonts.utils";
@@ -190,6 +195,14 @@ export async function drawMemberEventCard(
   ctx.restore();
 
   if (layout.borderColors.length > 0) {
-    drawGradientBorder(ctx, width, height, layout.borderColors, CORNER_RADIUS);
+    drawGradientBorder(
+      ctx,
+      width,
+      height,
+      layout.borderColors,
+      CORNER_RADIUS,
+      DEFAULT_BORDER_THICKNESS,
+      layout.borderMix,
+    );
   }
 }

@@ -35,7 +35,7 @@ export async function genLeaderboardPng(
   await drawCardBackground(ctx, CARD_WIDTH, height, options?.backgroundImage, accentColor);
 
   if (borderColors.length > 0) {
-    drawCardBorder(ctx, CARD_WIDTH, height, borderColors);
+    drawCardBorder(ctx, CARD_WIDTH, height, borderColors, options?.borderMix);
   }
 
   if (hasTitle) {

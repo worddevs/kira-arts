@@ -4,6 +4,7 @@ export type PresenceStatus =
   "online" | "idle" | "offline" | "dnd" | "invisible" | "streaming" | "phone";
 
 export type BorderAlign = "horizontal" | "vertical";
+export type BorderMix = "linear" | "mixed" | "random";
 
 export type ColorValue = string | number;
 export type ColorInput = ColorValue | ColorValue[];

@@ -175,6 +175,6 @@ export async function drawWeeklyRecapCard(
   ctx.restore();
 
   if (borderColors.length > 0) {
-    drawGradientBorder(ctx, width, height, borderColors, CORNER_RADIUS - 2, 4);
+    drawGradientBorder(ctx, width, height, borderColors, CORNER_RADIUS - 2, 4, layout.borderMix);
   }
 }

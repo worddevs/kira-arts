@@ -1,5 +1,10 @@
 import { type SKRSContext2D, createCanvas, loadImage } from "@napi-rs/canvas";
-import { drawCoverImage, drawGradientBorder, hexToRgba } from "./canvasShared.utils";
+import {
+  DEFAULT_BORDER_THICKNESS,
+  drawCoverImage,
+  drawGradientBorder,
+  hexToRgba,
+} from "./canvasShared.utils";
 import { parseHex } from "./validations.utils";
 import { truncateText } from "./strings.utils";
 import { withFallback } from "./fonts.utils";
@@ -172,6 +177,14 @@ export async function drawAchievementCard(
   ctx.restore();
 
   if (borderColors.length > 0) {
-    drawGradientBorder(ctx, width, height, borderColors, CORNER_RADIUS);
+    drawGradientBorder(
+      ctx,
+      width,
+      height,
+      borderColors,
+      CORNER_RADIUS,
+      DEFAULT_BORDER_THICKNESS,
+      layout.borderMix,
+    );
   }
 }

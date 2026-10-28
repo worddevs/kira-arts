@@ -64,6 +64,7 @@ export async function levelUpImage(
     message: options.message,
     accentColor,
     borderColors,
+    borderMix: options.borderMix,
     barColors,
     barBackgroundColor: options.barBackgroundColor,
     levelColor: options.levelColor ?? palette?.levelColor,

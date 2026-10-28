@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-10-28
+
+### Added
+
+- **`borderMix` option on every card** — `borderMix: "linear" | "mixed" | "random"` (default `"linear"`, the previous left-to-right gradient). `"mixed"` spreads the `borderColor` colors around the whole outline in interleaved positions, always the same for the same colors. `"random"` places them differently on every card; animated cards (GIF) keep the same arrangement across all frames. Existing code keeps working unchanged.
+
 ## [1.7.0] - 2026-10-22
 
 ### Added

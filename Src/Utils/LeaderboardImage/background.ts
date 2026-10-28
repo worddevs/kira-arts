@@ -1,6 +1,8 @@
 import type { SKRSContext2D } from "@napi-rs/canvas";
 import { loadImage } from "@napi-rs/canvas";
 
+import type { BorderMix } from "../../@Types/index";
+import { createBorderPaint } from "../borderMix.utils";
 import { parseHex } from "../validations.utils";
 import { CORNER_RADIUS, DEFAULT_ACCENT } from "./constants";
 import { hexToRgba } from "./colorUtils";
@@ -80,19 +82,18 @@ export function drawCardBorder(
   width: number,
   height: number,
   colors: string[],
+  mix?: BorderMix,
 ): void {
   const thickness = 3;
 
   ctx.save();
 
-  const grd = ctx.createLinearGradient(0, 0, width, height);
-  for (let i = 0; i < colors.length; i++) {
-    const stop = colors.length === 1 ? 0 : i / (colors.length - 1);
-
-    grd.addColorStop(stop, parseHex(colors[i]));
-  }
-
-  ctx.strokeStyle = grd;
+  ctx.strokeStyle = createBorderPaint(ctx, width, height, colors, mix, {
+    x1: 0,
+    y1: 0,
+    x2: width,
+    y2: height,
+  });
   ctx.shadowColor = hexToRgba(parseHex(colors[0]), 0.55);
   ctx.shadowBlur = 18;
   ctx.lineWidth = thickness;

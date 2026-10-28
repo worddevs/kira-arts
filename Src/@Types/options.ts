@@ -1,6 +1,7 @@
 import type {
   PresenceStatus,
   BorderAlign,
+  BorderMix,
   OutputOptions,
   ColorInput,
   KiraFontFamily,
@@ -35,6 +36,7 @@ export interface MemberEventOptions {
   confetti?: boolean;
   gifSeconds?: number;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -71,6 +73,7 @@ export interface AchievementOptions {
   rarity?: AchievementRarity;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -90,6 +93,7 @@ export interface ShipOptions {
   message?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -111,6 +115,7 @@ export interface LevelUpOptions {
   customBackground?: string;
   backgroundTint?: boolean;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -142,6 +147,7 @@ export interface LevelUpLayout {
   message?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   barColors: string[];
   barBackgroundColor?: string;
   levelColor?: string;
@@ -173,6 +179,7 @@ export interface LeaderboardOptions {
   usernameColor?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -191,6 +198,7 @@ export interface AchievementLayout {
   rarity?: AchievementRarity;
   accentColor?: string;
   borderColors?: string[];
+  borderMix?: BorderMix;
   noBorder?: boolean;
   customBackground?: string;
   usernameLine?: string;
@@ -212,6 +220,7 @@ export interface ProfileOptions {
   usernameColor?: string;
   tagColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   borderAllign?: BorderAlign;
   disableProfileTheme?: boolean;
   disableBackgroundBlur?: boolean;
@@ -244,6 +253,7 @@ export interface NowPlayingLayout {
   sourceIcon?: SourceIconKind;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   barColors: string[];
   titleColor?: string;
   authorColor?: string;
@@ -272,6 +282,7 @@ export interface NowPlayingOptions {
   bypassCache?: boolean;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -314,6 +325,7 @@ export interface GiveawayOptions {
   description?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -339,6 +351,7 @@ export interface GiveawayLayout {
   dateText?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   customBackground?: string;
   prizeColor?: string;
   hostColor?: string;
@@ -351,6 +364,7 @@ export interface BirthdayOptions {
   customMessage?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -370,6 +384,7 @@ export interface BirthdayLayout {
   message?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   noBorder?: boolean;
   customBackground?: string;
 }
@@ -381,6 +396,7 @@ export interface MarriageOptions {
   vows?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -402,6 +418,7 @@ export interface MarriageLayout {
   vows?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   noBorder?: boolean;
   customBackground?: string;
 }
@@ -422,6 +439,7 @@ export interface WeeklyRecapOptions {
   guildName?: string;
   accentColor?: string;
   borderColor?: ColorInput;
+  borderMix?: BorderMix;
   removeBorder?: boolean;
   useNitroTheme?: boolean;
   useRoleColor?: boolean;
@@ -445,6 +463,7 @@ export interface WeeklyRecapLayout {
   guildName?: string;
   accentColor: string;
   borderColors: string[];
+  borderMix?: BorderMix;
   noBorder?: boolean;
   customBackground?: string;
 }

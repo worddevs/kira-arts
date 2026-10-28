@@ -3,6 +3,7 @@ export { KiraErrorCode } from "./common";
 export type {
   PresenceStatus,
   BorderAlign,
+  BorderMix,
   OutputFormat,
   OutputOptions,
   ColorValue,

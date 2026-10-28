@@ -2,6 +2,7 @@ import type { SKRSContext2D } from "@napi-rs/canvas";
 
 import {
   drawCoverImage,
+  DEFAULT_BORDER_THICKNESS,
   drawGradientBorder,
   hexToRgba,
   loadImageSafe,
@@ -294,6 +295,14 @@ export async function drawGiveawayCard(
   ctx.restore();
 
   if (layout.borderColors.length > 0) {
-    drawGradientBorder(ctx, width, height, layout.borderColors, CORNER_RADIUS);
+    drawGradientBorder(
+      ctx,
+      width,
+      height,
+      layout.borderColors,
+      CORNER_RADIUS,
+      DEFAULT_BORDER_THICKNESS,
+      layout.borderMix,
+    );
   }
 }

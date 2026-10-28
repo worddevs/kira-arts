@@ -142,6 +142,6 @@ export async function drawShipCard(
       : [accentColor];
 
   if (borderColors.length > 0) {
-    drawGradientBorder(ctx, width, height, borderColors, CORNER_RADIUS - 2, 4);
+    drawGradientBorder(ctx, width, height, borderColors, CORNER_RADIUS - 2, 4, layout.borderMix);
   }
 }

@@ -113,6 +113,7 @@ export async function renderMemberEventCard(
     dateText,
     accentColor,
     borderColors,
+    borderMix: options.borderMix,
     usernameColor: options.usernameColor ?? palette?.usernameColor,
     messageColor: options.messageColor ?? palette?.messageColor,
     secondaryMessageColor: options.secondaryMessageColor,

@@ -38,6 +38,7 @@ export async function birthdayImage(
     message: options.customMessage,
     accentColor: accentColor ?? "#F472B6",
     borderColors,
+    borderMix: options.borderMix,
     noBorder: options.removeBorder,
     customBackground: options.customBackground,
   };

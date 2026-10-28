@@ -76,6 +76,7 @@ export async function giveawayImage(prize: string, options: GiveawayOptions = {}
     dateText,
     accentColor,
     borderColors,
+    borderMix: options.borderMix,
     customBackground: options.customBackground,
     prizeColor: options.prizeColor,
     hostColor: options.hostColor,
