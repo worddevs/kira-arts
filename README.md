@@ -24,7 +24,7 @@ A TypeScript library for generating Discord-style visual cards — profiles, wel
 
 ## ✨ Features
 
-- 🖼️ Profile, Welcome/Leave, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, Giveaway, Birthday, Marriage, Weekly Recap, and Code Snippet cards
+- 🖼️ Profile, Welcome/Leave, Booster, Level Up, Achievement, Leaderboard, Ship (compatibility), Now Playing, Giveaway, Birthday, Marriage, Weekly Recap, and Code Snippet cards
 - 🎵 Now Playing card ships with adapters for moonlink.js, Lavalink-based clients (erela.js, Shoukaku, Kazagumo, Riffy, Magmastream, lavalink-client), discord-player, and distube
 - 💻 Code Snippet card renders syntax-highlighted code screenshots (JavaScript, TypeScript, Python, Java, C#, JSON, Bash, plaintext) in 6 built-in editor themes, without needing a Discord user ID
 - 🎨 8 built-in themes (`discord`, `midnight`, `sunset`, `neon`, `forest`, `sakura`, `monochrome`, `gold`), Nitro/role-color aware borders, and up to 4 custom border colors with `linear`, `mixed`, or `random` blending
@@ -89,6 +89,7 @@ Every other card, the music adapters, theming, caching, error handling, and outp
 | Profile      | `profileImage(userId, options)`                   | Avatar, badges, nameplate, server tag, rank                 |
 | Welcome      | `welcomeImage(userId, guildName, options)`        | Member join events, with an optional hideable kind pill     |
 | Leave        | `leaveImage(userId, guildName, options)`          | Member leave events, with an optional hideable kind pill    |
+| Booster      | `boosterImage(userId, guildName, options)`        | Server boost events, with a boost gem and boost count/level |
 | Level Up     | `levelUpImage(userId, level, options)`            | XP progress bar on level-up, in compact/standard/wide sizes |
 | Achievement  | `achievementImage(userId, title, options)`        | Unlockable achievements with rarity tiers                   |
 | Leaderboard  | `leaderboardImage(entries, options)`              | Server ranking table                                        |

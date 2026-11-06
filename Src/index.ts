@@ -2,6 +2,7 @@ export { profileImage } from "./Cards/profileImage";
 export { leaderboardImage } from "./Cards/leaderboardImage";
 export { welcomeImage } from "./Cards/welcomeImage";
 export { leaveImage } from "./Cards/leaveImage";
+export { boosterImage } from "./Cards/boosterImage";
 export { levelUpImage } from "./Cards/levelUpImage";
 export { achievementImage } from "./Cards/achievementImage";
 export { shipImage } from "./Cards/shipImage";
@@ -73,6 +74,9 @@ export type {
   CardSize,
   MemberEventOptions,
   MemberEventLayout,
+  BoosterOptions,
+  BoosterLayout,
+  BoosterLevel,
   TextEffect,
   LevelUpOptions,
   LevelUpLayout,

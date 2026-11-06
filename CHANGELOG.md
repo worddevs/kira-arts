@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-11-05
+
+### Added
+
+- **`boosterImage()`** — a new card for when a member boosts the server, built like the welcome card: `centered` and `banner` layouts, `compact` / `standard` / `wide` sizes, themes, `customBackground`, text effects, server tag, badges, avatar decoration, `animated` / `confetti` GIF output and `borderMix`. It adds a faceted boost gem on the avatar and in the "NEW BOOSTER" / "NUEVO BOOSTER" pill, plus sparkles in the header.
+- **Booster options** — `BoosterOptions` accepts everything from `MemberEventOptions` (except `memberCount`) plus `boostCount` (total boosts, shown as "14 boosts"), `boostLevel` (`0 | 1 | 2 | 3`, shown as "Level 3" / "Nivel 3") and `showBoostIcon` (default `true`). Message templates accept `{username}`, `{user}`, `{server}` and `{boosts}`.
+- New exported types: `BoosterOptions`, `BoosterLayout` and `BoosterLevel`.
+- Tests for Booster card dimensions and rendered output size for both layouts.
+
 ## [1.8.0] - 2026-10-28
 
 ### Added

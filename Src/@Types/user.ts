@@ -1,5 +1,11 @@
 import type { KiraNameplatePalette } from "./theme";
-import type { LeaderboardEntry, MemberEventLayoutStyle, MemberEventSize } from "./options";
+import type {
+  BoosterLevel,
+  CardSize,
+  LeaderboardEntry,
+  MemberEventLayoutStyle,
+  MemberEventSize,
+} from "./options";
 import type { BorderMix, KiraFontFamily } from "./common";
 
 export interface KiraBadge {
@@ -157,6 +163,39 @@ export interface MemberEventLayout {
   serverTag?: KiraServerTag | null;
   badges?: KiraBadge[];
   maxBadges?: number;
+  usernameEffect?: TextEffect;
+  messageEffect?: TextEffect;
+  glowColor?: string;
+}
+
+export interface BoosterLayout {
+  kindLabel: string;
+  message?: string;
+  secondaryMessage?: string;
+  boostCount?: number;
+  boostText?: string;
+  boostLevel?: BoosterLevel;
+  dateText?: string;
+  accentColor: string;
+  borderColors: string[];
+  borderMix?: BorderMix;
+  usernameColor?: string;
+  messageColor?: string;
+  secondaryMessageColor?: string;
+  fontFamily?: KiraFontFamily;
+  customBackground?: string;
+  fontScale?: number;
+  layoutStyle?: MemberEventLayoutStyle;
+  size?: CardSize;
+  animated?: boolean;
+  confetti?: boolean;
+  gifSeconds?: number;
+  avatarFrameUrl?: string | null;
+  avatarBorderColor?: string;
+  serverTag?: KiraServerTag | null;
+  badges?: KiraBadge[];
+  maxBadges?: number;
+  showBoostIcon?: boolean;
   usernameEffect?: TextEffect;
   messageEffect?: TextEffect;
   glowColor?: string;

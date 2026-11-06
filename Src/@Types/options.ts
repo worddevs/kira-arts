@@ -65,6 +65,17 @@ export interface MemberEventOptions {
   output?: OutputOptions;
 }
 
+export type BoosterLevel = 0 | 1 | 2 | 3;
+
+export interface BoosterOptions extends Omit<MemberEventOptions, "memberCount"> {
+  /** Total boosts the server has. Rendered as "14 boosts" under the message. */
+  boostCount?: number;
+  /** Server boost level (0-3). Rendered next to the boost count. */
+  boostLevel?: BoosterLevel;
+  /** Draw the boost gem on the avatar and the card header. Defaults to `true`. */
+  showBoostIcon?: boolean;
+}
+
 export type AchievementRarity = "common" | "rare" | "epic" | "legendary";
 
 export interface AchievementOptions {

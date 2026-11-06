@@ -46,6 +46,7 @@ export type {
   TextEffect,
   BannerLine,
   MemberEventLayout,
+  BoosterLayout,
   ResolvedLeaderboardEntry,
   BadgeCategory,
   CatalogEntry,
@@ -55,6 +56,8 @@ export type {
 export type {
   RankOptions,
   MemberEventOptions,
+  BoosterOptions,
+  BoosterLevel,
   MemberEventLayoutStyle,
   CardSize,
   MemberEventSize,
