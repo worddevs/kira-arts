@@ -108,6 +108,14 @@ function drawSparkle(
   ctx.restore();
 }
 
+/** Pixel rectangle where sparkles are skipped, so they never sit on top of text. */
+export interface SparkleAvoidZone {
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+}
+
 // [x fraction, y fraction, size, alpha]
 const SPARKLE_LAYOUT: ReadonlyArray<readonly [number, number, number, number]> = [
   [0.07, 0.2, 14, 0.9],
@@ -123,14 +131,21 @@ const SPARKLE_LAYOUT: ReadonlyArray<readonly [number, number, number, number]> =
 /**
  * Scatters a fixed set of sparkles inside the rectangle (0, 0, width, height).
  * The positions are deterministic, so the same card always looks the same.
+ * Sparkles whose center falls inside `avoid` are skipped.
  */
 export function drawSparkleField(
   ctx: SKRSContext2D,
   width: number,
   height: number,
   scale: number = 1,
+  avoid?: SparkleAvoidZone,
 ): void {
   for (const [xFraction, yFraction, size, alpha] of SPARKLE_LAYOUT) {
-    drawSparkle(ctx, width * xFraction, height * yFraction, size * scale, "#FFFFFF", alpha);
+    const x = width * xFraction;
+    const y = height * yFraction;
+
+    if (avoid && x >= avoid.x0 && x <= avoid.x1 && y >= avoid.y0 && y <= avoid.y1) continue;
+
+    drawSparkle(ctx, x, y, size * scale, "#FFFFFF", alpha);
   }
 }

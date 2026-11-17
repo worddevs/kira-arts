@@ -6,45 +6,15 @@ import { resolveCardColors } from "../Utils/canvasShared.utils";
 import { getDateOrString, normalizeDisplayText } from "../Utils/strings.utils";
 import { getThemePalette } from "../Utils/themes.utils";
 import { DEFAULT_ACCENT } from "../Utils/BoosterCard/constants";
+import {
+  DEFAULT_BOOSTER_MESSAGE,
+  DEFAULT_REPEAT_BOOSTER_MESSAGE,
+  formatBoostText,
+  formatKindLabel,
+  formatMessage,
+  isRepeatBoost,
+} from "../Utils/BoosterCard/text";
 import { type BoosterLayout, type BoosterOptions, KiraErrorCode } from "../@Types/index";
-
-const DEFAULT_BOOSTER_MESSAGE = "Thanks for boosting {server}!";
-
-function formatMessage(
-  template: string,
-  username: string,
-  guildName: string,
-  boostCount?: number,
-): string {
-  return template
-    .replace(/\{username\}/g, username)
-    .replace(/\{user\}/g, username)
-    .replace(/\{server\}/g, guildName)
-    .replace(/\{boosts\}/g, boostCount != null ? String(boostCount) : "");
-}
-
-function formatKindLabel(localDateType: string): string {
-  return localDateType.startsWith("es") ? "NUEVO BOOSTER" : "NEW BOOSTER";
-}
-
-function formatBoostText(
-  boostCount: number | undefined,
-  boostLevel: number | undefined,
-  localDateType: string,
-): string | undefined {
-  const isEs = localDateType.startsWith("es");
-  const parts: string[] = [];
-
-  if (boostCount != null) {
-    parts.push(`${boostCount} boost${boostCount === 1 ? "" : "s"}`);
-  }
-
-  if (boostLevel != null) {
-    parts.push(isEs ? `Nivel ${boostLevel}` : `Level ${boostLevel}`);
-  }
-
-  return parts.length ? parts.join(" · ") : undefined;
-}
 
 export async function boosterImage(
   userId: string,
@@ -70,6 +40,26 @@ export async function boosterImage(
     throw new KiraError("boostLevel must be 0, 1, 2 or 3", KiraErrorCode.Validation);
   }
 
+  if (
+    options.userBoostCount != null &&
+    (!Number.isInteger(options.userBoostCount) || options.userBoostCount < 1)
+  ) {
+    throw new KiraError("userBoostCount must be an integer of 1 or more", KiraErrorCode.Validation);
+  }
+
+  if (options.previousLevel != null) {
+    if (![0, 1, 2, 3].includes(options.previousLevel)) {
+      throw new KiraError("previousLevel must be 0, 1, 2 or 3", KiraErrorCode.Validation);
+    }
+
+    if (options.boostLevel != null && options.previousLevel > options.boostLevel) {
+      throw new KiraError(
+        "previousLevel cannot be higher than boostLevel",
+        KiraErrorCode.Validation,
+      );
+    }
+  }
+
   const data = await fetchUserData(userId, options.guildId, options.bypassCache);
   const username = normalizeDisplayText(data.basicInfo.globalName || data.basicInfo.username);
   const avatarUrl = data.assets.avatarURL ?? data.assets.defaultAvatarURL;
@@ -93,16 +83,22 @@ export async function boosterImage(
 
   const localDateType = options.localDateType ?? "en";
   const safeGuildName = normalizeDisplayText(guildName);
-  const rawMessage =
-    options.message === "" ? undefined : (options.message ?? DEFAULT_BOOSTER_MESSAGE);
+  const repeat = isRepeatBoost(options.userBoostCount);
+  const templateValues = {
+    username,
+    guildName: safeGuildName,
+    boostCount: options.boostCount,
+    userBoostCount: options.userBoostCount,
+  };
+
+  const defaultMessage = repeat ? DEFAULT_REPEAT_BOOSTER_MESSAGE : DEFAULT_BOOSTER_MESSAGE;
+  const rawMessage = options.message === "" ? undefined : (options.message ?? defaultMessage);
   const message = rawMessage
-    ? normalizeDisplayText(formatMessage(rawMessage, username, safeGuildName, options.boostCount))
+    ? normalizeDisplayText(formatMessage(rawMessage, templateValues))
     : undefined;
 
   const secondaryMessage = options.secondaryMessage
-    ? normalizeDisplayText(
-        formatMessage(options.secondaryMessage, username, safeGuildName, options.boostCount),
-      )
+    ? normalizeDisplayText(formatMessage(options.secondaryMessage, templateValues))
     : undefined;
 
   const dateText = options.showDate
@@ -112,12 +108,22 @@ export async function boosterImage(
   const fontScale = options.fontScale && options.fontScale > 0 ? options.fontScale : 1;
 
   const layout: BoosterLayout = {
-    kindLabel: options.showKindLabel === false ? "" : formatKindLabel(localDateType),
+    kindLabel: options.showKindLabel === false ? "" : formatKindLabel(localDateType, repeat),
     message,
     secondaryMessage,
     boostCount: options.boostCount,
-    boostText: formatBoostText(options.boostCount, options.boostLevel, localDateType),
+    boostText: formatBoostText(
+      {
+        userBoostCount: options.userBoostCount,
+        boostCount: options.boostCount,
+        boostLevel: options.boostLevel,
+        previousLevel: options.previousLevel,
+      },
+      localDateType,
+    ),
     boostLevel: options.boostLevel,
+    userBoostCount: options.userBoostCount,
+    previousLevel: options.previousLevel,
     dateText,
     accentColor,
     borderColors,

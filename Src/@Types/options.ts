@@ -74,6 +74,16 @@ export interface BoosterOptions extends Omit<MemberEventOptions, "memberCount"> 
   boostLevel?: BoosterLevel;
   /** Draw the boost gem on the avatar and the card header. Defaults to `true`. */
   showBoostIcon?: boolean;
+  /**
+   * How many boosts this user has made, tracked by your bot (Discord does not expose it).
+   * From 2 upward the card shows an "x2" badge, "Boost #2" and a "BOOSTED AGAIN" label.
+   */
+  userBoostCount?: number;
+  /**
+   * Server boost level before this boost. When it is lower than `boostLevel`
+   * the card shows the jump, e.g. "Level 1 → 2".
+   */
+  previousLevel?: BoosterLevel;
 }
 
 export type AchievementRarity = "common" | "rare" | "epic" | "legendary";

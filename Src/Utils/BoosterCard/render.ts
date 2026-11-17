@@ -132,6 +132,7 @@ export async function drawBoosterCard(
     image: avatarImage,
     frameUrl: layout.avatarFrameUrl,
     showBoostIcon,
+    boostMultiplier: layout.userBoostCount,
   });
 
   let cursorY = BANNER_HEIGHT + avatarSize / 2 + 48 * fontScale;

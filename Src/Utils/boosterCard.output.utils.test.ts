@@ -63,6 +63,23 @@ describe("genBoosterPng", () => {
     expect(pngSize(png)).toEqual(getCardDimensions(data));
   });
 
+  it("renders a repeat boost with the multiplier badge and level jump", async () => {
+    const data = layout({
+      userBoostCount: 3,
+      previousLevel: 1,
+      boostLevel: 2,
+      boostText: "Boost #3 · 14 boosts · Level 1 → 2",
+      kindLabel: "BOOSTED AGAIN",
+    });
+
+    for (const layoutStyle of ["centered", "banner"] as const) {
+      const styled = { ...data, layoutStyle };
+      const png = await genBoosterPng("", "Kira", styled);
+
+      expect(pngSize(png)).toEqual(getCardDimensions(styled));
+    }
+  });
+
   it("renders without the boost icon, kind label or boost text", async () => {
     const data = layout({ showBoostIcon: false, kindLabel: "", boostText: undefined });
     const png = await genBoosterPng("", "Kira", data);

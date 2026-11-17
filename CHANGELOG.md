@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-11-16
+
+### Added
+
+- **Repeat boosts on the Booster card** — `boosterImage()` now supports `userBoostCount`, the number of boosts a user has made. Discord does not expose that number, so your bot tracks it and passes it in. From 2 upward the card shows an "x2" badge on the boost gem, "Boost #2" in the accent line, the label **BOOSTED AGAIN** (**OTRO BOOST** in Spanish) and the default message "Thanks for boosting {server} again!". With `1` or no value the card looks exactly as before.
+- **Level jump** — new `previousLevel` option. When it is lower than `boostLevel` the accent line shows the jump, e.g. "Level 1 → 2" ("Nivel 1 → 2").
+- New message variable `{userBoosts}`.
+- Validation: `userBoostCount` must be an integer of 1 or more, `previousLevel` must be 0, 1, 2 or 3 and cannot be higher than `boostLevel`.
+- Tests for the Booster card text helpers and for rendering repeat boosts in both layouts.
+
+### Changed
+
+- In the `banner` layout the sparkles are no longer drawn over the text area.
+- Booster text logic moved to `Utils/BoosterCard/text.ts` (internal, no API change).
+
 ## [1.9.0] - 2026-11-05
 
 ### Added

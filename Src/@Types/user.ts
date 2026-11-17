@@ -175,6 +175,8 @@ export interface BoosterLayout {
   boostCount?: number;
   boostText?: string;
   boostLevel?: BoosterLevel;
+  userBoostCount?: number;
+  previousLevel?: BoosterLevel;
   dateText?: string;
   accentColor: string;
   borderColors: string[];

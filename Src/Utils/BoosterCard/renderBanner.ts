@@ -74,7 +74,14 @@ export async function drawBannerBoosterCard(
   ctx.fillRect(0, 0, width, height);
 
   if (showBoostIcon) {
-    drawSparkleField(ctx, width, height, fontScale * 0.9);
+    const textZoneX = padding + avatarSize + avatarBorder * 2 + 26 * fontScale;
+
+    drawSparkleField(ctx, width, height, fontScale * 0.9, {
+      x0: textZoneX - 10,
+      y0: height * 0.25,
+      x1: width,
+      y1: height,
+    });
   }
 
   let cornerPillY = 14;
@@ -134,6 +141,7 @@ export async function drawBannerBoosterCard(
     image: avatarImage,
     frameUrl: layout.avatarFrameUrl,
     showBoostIcon,
+    boostMultiplier: layout.userBoostCount,
   });
 
   const textX = avatarCx + avatarSize / 2 + avatarBorder + 26 * fontScale;
